@@ -26,7 +26,6 @@ struct SettingsView: View {
 
                 Section(String(localized: "打字")) {
                     Toggle(String(localized: "鍵盤開著時自動打字"), isOn: $store.autoInsert)
-                    Toggle(String(localized: "半折時分開鍵盤"), isOn: $store.splitKeyboard)
                     Button(String(localized: "打開鍵盤設定"), systemImage: "keyboard") {
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(url)

@@ -106,12 +106,6 @@ final class DictationStore {
             SharedInbox.update { $0.autoInsert = value }
         }
     }
-    var splitKeyboard: Bool {
-        didSet {
-            let value = splitKeyboard
-            SharedInbox.update { $0.splitKeyboard = value }
-        }
-    }
 
     @ObservationIgnored private let link: StickLink
     @ObservationIgnored private let logger = Logger(subsystem: "DuoDictate", category: "dictation")
@@ -131,7 +125,6 @@ final class DictationStore {
         polishStyleID = UserDefaults.standard.string(forKey: "polishStyle") ?? PolishStyle.cleanID
         let shared = SharedInbox.read()
         autoInsert = shared.autoInsert
-        splitKeyboard = shared.splitKeyboard ?? true
         if let data = UserDefaults.standard.data(forKey: Self.historyKey),
            let saved = try? JSONDecoder().decode([Dictation].self, from: data) {
             history = saved

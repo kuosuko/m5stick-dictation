@@ -1,9 +1,6 @@
 {
   "sourceLanguage": "zh-Hant",
   "strings": {
-    "Shift": {
-      "shouldTranslate": false
-    },
     "^_^": {
       "shouldTranslate": false
     },
@@ -17,32 +14,12 @@
         }
       }
     },
-    "上一段": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Previous Segment"
-          }
-        }
-      }
-    },
     "下一個鍵盤": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Next Keyboard"
-          }
-        }
-      }
-    },
-    "下一段": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Next Segment"
           }
         }
       }
@@ -63,26 +40,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Insert again"
-          }
-        }
-      }
-    },
-    "切換到注音": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Switch to Zhuyin"
-          }
-        }
-      }
-    },
-    "切換到英文": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Switch to English"
           }
         }
       }
@@ -133,16 +90,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Love"
-          }
-        }
-      }
-    },
-    "展開候選字": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Show Candidates"
           }
         }
       }
@@ -217,32 +164,12 @@
         }
       }
     },
-    "收起候選字": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hide Candidates"
-          }
-        }
-      }
-    },
     "正在收音…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Listening…"
-          }
-        }
-      }
-    },
-    "注音詞庫載入失敗": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn’t load the Zhuyin dictionary"
           }
         }
       }
@@ -273,16 +200,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "What you say with the Stick appears here"
-          }
-        }
-      }
-    },
-    "確認": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Confirm"
           }
         }
       }

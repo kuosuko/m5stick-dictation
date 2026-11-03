@@ -3,7 +3,7 @@ import SwiftUI
 /// The Stick keyboard. Typing happens on the system keyboard; this one is
 /// for Stick results. A waiting result is already in the field by the time
 /// this shows; here are the shortcuts as big buttons, the recent results to
-/// insert again, and keys for the small fixes after an insert. The Zhuyin dictionary is never loaded.
+/// insert again, and keys for the small fixes after an insert.
 struct HomePanel: View {
     let model: KeyboardModel
 

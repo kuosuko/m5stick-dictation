@@ -1,4 +1,0 @@
-/* Localized versions of Info.plist keys */
-
-CFBundleName = "Install McBopomofo";
-NSHumanReadableCopyright = "Copyright © 2011-2026 Mengjuei Hsieh et al.\nAll Rights Reserved.";

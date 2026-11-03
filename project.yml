@@ -64,30 +64,13 @@ targets:
   StickKeyboard:
     type: app-extension
     platform: iOS
-    sources:
-      - Keyboard
-      - KeyboardShared
-      - path: Vendor/McBopomofo/Source/Engine
-        group: Vendor
-        excludes:
-          - "**/*Test.cpp"
-          - "**/*_test.cpp"
-          - "**/*Benchmark.cpp"
-          - "EngineProfile.cpp"
-          - "**/CMakeLists.txt"
-          - "**/*.md"
-          - ".clang-format"
-          - ".gitignore"
+    sources: [Keyboard, KeyboardShared]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).duo.keyboard
         PRODUCT_NAME: StickKeyboard
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: NO
-        SWIFT_OBJC_BRIDGING_HEADER: Keyboard/StickKeyboard-Bridging-Header.h
-        CLANG_CXX_LANGUAGE_STANDARD: c++20
-        HEADER_SEARCH_PATHS: $(SRCROOT)/Vendor/McBopomofo/Source/Engine
-        GCC_WARN_INHIBIT_ALL_WARNINGS: NO
     entitlements:
       path: Keyboard/StickKeyboard.entitlements
       properties:

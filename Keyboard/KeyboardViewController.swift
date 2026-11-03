@@ -54,8 +54,5 @@ final class KeyboardViewController: UIInputViewController {
         super.viewWillLayoutSubviews()
         model.needsGlobe = needsInputModeSwitchKey
         model.hasFullAccess = hasFullAccess
-        if let orientation = view.window?.windowScene?.effectiveGeometry.interfaceOrientation {
-            model.isPortrait = orientation.isPortrait
-        }
     }
 }

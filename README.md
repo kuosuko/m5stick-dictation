@@ -118,14 +118,13 @@ The screen fonts are Noto Sans TC, rendered by `Firmware/tools/make_fonts.py`. R
 | `KeyboardShared/`, `Shared/` | Code shared by the app, the keyboard and the protocol |
 | `macOS/` | StickSim, a Mac app that stands in for the Stick over Bluetooth |
 | `Design/StickRender/` | Renders the Stick pictures used in the app |
-| `Tools/` | IPA packing and keyboard data scripts |
+| `Tools/` | IPA packing |
 
 ## Acknowledgements
 
-- [McBopomofo](https://github.com/openvanilla/McBopomofo) for the Zhuyin engine and dictionary (`Vendor/McBopomofo`).
 - [M5Stack](https://github.com/m5stack/M5_Hardware) for the StickS3 and its enclosure model (`iOS/Resources/Model`).
 - [Noto Sans TC](https://fonts.google.com/noto/specimen/Noto+Sans+TC) for the Stick's screen.
 
 ## License
 
-MIT, see [LICENSE](LICENSE). McBopomofo and the StickS3 model are MIT; Noto Sans TC is under the SIL Open Font License (`Firmware/fonts/OFL.txt`).
+MIT, see [LICENSE](LICENSE). The StickS3 model is MIT; Noto Sans TC is under the SIL Open Font License (`Firmware/fonts/OFL.txt`).

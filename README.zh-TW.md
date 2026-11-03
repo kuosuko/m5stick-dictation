@@ -118,14 +118,13 @@ cd Firmware && tools/pio run -t upload
 | `KeyboardShared/`、`Shared/` | App、鍵盤與通訊協定共用的程式碼 |
 | `macOS/` | StickSim：在 Mac 上透過藍牙模擬 Stick |
 | `Design/StickRender/` | 產生 App 裡的 Stick 圖片 |
-| `Tools/` | 打包 IPA 與產生鍵盤資料的腳本 |
+| `Tools/` | 打包 IPA 的腳本 |
 
 ## 致謝
 
-- [小麥注音](https://github.com/openvanilla/McBopomofo)：注音引擎與詞庫（`Vendor/McBopomofo`）。
 - [M5Stack](https://github.com/m5stack/M5_Hardware)：StickS3 與外殼模型（`iOS/Resources/Model`）。
 - [Noto Sans TC](https://fonts.google.com/noto/specimen/Noto+Sans+TC)：Stick 螢幕字型。
 
 ## 授權
 
-MIT，見 [LICENSE](LICENSE)。小麥注音與 StickS3 模型為 MIT；Noto Sans TC 採 SIL Open Font License（`Firmware/fonts/OFL.txt`）。
+MIT，見 [LICENSE](LICENSE)。StickS3 模型為 MIT；Noto Sans TC 採 SIL Open Font License（`Firmware/fonts/OFL.txt`）。
