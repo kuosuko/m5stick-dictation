@@ -67,18 +67,32 @@ func studioEnvironment() -> NSImage {
     }
 }
 
-/// What the Stick's own screen shows in the hero: the ready mic, lit.
+/// What the Stick's own screen shows in the hero: its parrot, lit.
 func screenImage() -> NSImage {
     let size = NSSize(width: 270, height: 480)
-    return NSImage(size: size, flipped: false) { rect in
+    let rows = [
+        "......####....",
+        ".....######...",
+        ".....###.#####",
+        ".....######..#",
+        "....#######...",
+        "...########...",
+        "...#######....",
+        "..######......",
+        ".####.#.#.....",
+        "####..........",
+    ]
+    return NSImage(size: size, flipped: true) { rect in
         NSColor(white: 0.015, alpha: 1).setFill()
         rect.fill()
-        let config = NSImage.SymbolConfiguration(pointSize: 64, weight: .semibold)
-            .applying(.init(paletteColors: [NSColor(calibratedRed: 1, green: 0.48, blue: 0.16, alpha: 1)]))
-        if let mic = NSImage(systemSymbolName: "mic.fill", accessibilityDescription: nil)?.withSymbolConfiguration(config) {
-            let micRect = NSRect(x: (size.width - mic.size.width) / 2, y: (size.height - mic.size.height) / 2,
-                                 width: mic.size.width, height: mic.size.height)
-            mic.draw(in: micRect)
+        let cell: CGFloat = 11
+        let origin = CGPoint(x: (size.width - cell * CGFloat(rows[0].count)) / 2,
+                             y: (size.height - cell * CGFloat(rows.count)) / 2)
+        NSColor(calibratedRed: 236 / 255, green: 186 / 255, blue: 64 / 255, alpha: 1).setFill()
+        for (r, row) in rows.enumerated() {
+            for (c, ch) in row.enumerated() where ch == "#" {
+                NSRect(x: origin.x + CGFloat(c) * cell, y: origin.y + CGFloat(r) * cell, width: cell, height: cell).fill()
+            }
         }
         return true
     }
