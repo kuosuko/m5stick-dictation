@@ -1,0 +1,6 @@
+// Shared build settings. Put your own team and identifiers in
+// Config/Local.xcconfig (copy Local.example.xcconfig); it is not committed.
+BUNDLE_ID_PREFIX = com.example.stickdictation
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"

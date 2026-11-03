@@ -1,0 +1,27 @@
+#!/bin/sh
+# PlatformIO for this firmware. pioarduino needs Python 3.10–3.14 (Homebrew's
+# platformio runs on 3.15), and the toolchains and build output take several
+# GB, so they live in their own folder: STICK_PIO_ROOT, set in the
+# environment or in tools/pio.local (not committed), or ~/.stickdictation-pio.
+# Usage: tools/pio run -t upload
+set -e
+local_config="$(dirname "$0")/pio.local"
+[ -f "$local_config" ] && . "$local_config"
+root="${STICK_PIO_ROOT:-$HOME/.stickdictation-pio}"
+export PLATFORMIO_CORE_DIR="$root"
+export PLATFORMIO_WORKSPACE_DIR="$root/workspace/stickdictation"
+# Not $root/penv: pioarduino manages that one and swaps in its own core.
+if [ ! -x "$root/cli/bin/pio" ]; then
+  echo "No PlatformIO at $root/cli. Create it with:" >&2
+  echo "  uv venv --python 3.13 $root/cli && uv pip install --python $root/cli/bin/python platformio" >&2
+  exit 1
+fi
+# pioarduino installs its core fork ("pioarduino" >=6.2.0, which resolves to
+# 6.2.0.post1) into its own penv, then rejects 6.2.0.post1 as older than the
+# 6.2.0 its platform requires. Pin the fork to 6.2.0: it satisfies both.
+penv_python="$root/penv/bin/python"
+if [ -x "$penv_python" ] && "$penv_python" -c 'import platformio, sys; sys.exit(platformio.VERSION != (6, 2, 0, "post1"))' 2>/dev/null; then
+  uv pip install -q --python "$penv_python" --reinstall pioarduino==6.2.0 >&2
+fi
+cd "$(dirname "$0")/.."
+exec "$root/cli/bin/pio" "$@"

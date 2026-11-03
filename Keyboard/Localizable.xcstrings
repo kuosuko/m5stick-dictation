@@ -1,0 +1,372 @@
+{
+  "sourceLanguage": "zh-Hant",
+  "strings": {
+    "Shift": {
+      "shouldTranslate": false
+    },
+    "^_^": {
+      "shouldTranslate": false
+    },
+    "上一句": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last"
+          }
+        }
+      }
+    },
+    "上一段": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous Segment"
+          }
+        }
+      }
+    },
+    "下一個鍵盤": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next Keyboard"
+          }
+        }
+      }
+    },
+    "下一段": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next Segment"
+          }
+        }
+      }
+    },
+    "全部": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        }
+      }
+    },
+    "再插入一次": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insert again"
+          }
+        }
+      }
+    },
+    "切換到注音": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch to Zhuyin"
+          }
+        }
+      }
+    },
+    "切換到英文": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch to English"
+          }
+        }
+      }
+    },
+    "刪除": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "到 Stick App 的設定 › 我的資訊，加入地址、Email、電話這些常打的資料。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the Stick app, go to Settings › My Info to add an address, email or phone number you type often."
+          }
+        }
+      }
+    },
+    "到設定 › 一般 › 鍵盤 › Stick 打開「允許完整取用」，才收得到 Stick 的文字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Allow Full Access in Settings › General › Keyboard › Stick to receive Stick text"
+          }
+        }
+      }
+    },
+    "動物": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Animals"
+          }
+        }
+      }
+    },
+    "喜歡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Love"
+          }
+        }
+      }
+    },
+    "展開候選字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Candidates"
+          }
+        }
+      }
+    },
+    "我的": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mine"
+          }
+        }
+      }
+    },
+    "我的資訊": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Info"
+          }
+        }
+      }
+    },
+    "打招呼": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Greetings"
+          }
+        }
+      }
+    },
+    "按住 Stick 說話": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold the Stick to talk"
+          }
+        }
+      }
+    },
+    "按住打開完整的顏文字面板": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold to open the full kaomoji panel"
+          }
+        }
+      }
+    },
+    "插入": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insert"
+          }
+        }
+      }
+    },
+    "換行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "return"
+          }
+        }
+      }
+    },
+    "收起候選字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Candidates"
+          }
+        }
+      }
+    },
+    "正在收音…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listening…"
+          }
+        }
+      }
+    },
+    "注音詞庫載入失敗": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t load the Zhuyin dictionary"
+          }
+        }
+      }
+    },
+    "無奈": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meh"
+          }
+        }
+      }
+    },
+    "生氣": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Angry"
+          }
+        }
+      }
+    },
+    "用 Stick 說的話會出現在這裡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What you say with the Stick appears here"
+          }
+        }
+      }
+    },
+    "確認": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm"
+          }
+        }
+      }
+    },
+    "空白": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "space"
+          }
+        }
+      }
+    },
+    "轉寫中…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribing…"
+          }
+        }
+      }
+    },
+    "轉寫失敗": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription failed"
+          }
+        }
+      }
+    },
+    "返回": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
+      }
+    },
+    "開心": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Happy"
+          }
+        }
+      }
+    },
+    "難過": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sad"
+          }
+        }
+      }
+    },
+    "顏文字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaomoji"
+          }
+        }
+      }
+    },
+    "驚訝": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surprised"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

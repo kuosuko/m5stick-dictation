@@ -1,0 +1,1727 @@
+{
+  "sourceLanguage": "zh-Hant",
+  "strings": {
+    "%.1f 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%.1f s"
+          }
+        }
+      }
+    },
+    "%.1f 秒的錄音": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%.1f s recording"
+          }
+        }
+      }
+    },
+    "%@ API key 無效": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The %@ API key isn’t valid"
+          }
+        }
+      }
+    },
+    "%@ 回應 %lld：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ answered %lld: %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 回應 %2$lld：%3$@"
+          }
+        }
+      }
+    },
+    "%@ 已停用，整理改用 %@。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ was retired; polishing now uses %@."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 已停用，整理改用 %2$@。"
+          }
+        }
+      }
+    },
+    "%@ 已停用，轉寫改用 %@。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ was retired; transcription now uses %@."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 已停用，轉寫改用 %2$@。"
+          }
+        }
+      }
+    },
+    "%lld 分 %lld 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min %lld s"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld 分 %2$lld 秒"
+          }
+        }
+      }
+    },
+    "%lld 段": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld s"
+          }
+        }
+      }
+    },
+    "1 分鐘": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 minute"
+          }
+        }
+      }
+    },
+    "10 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 seconds"
+          }
+        }
+      }
+    },
+    "15 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "15 seconds"
+          }
+        }
+      }
+    },
+    "2 分鐘": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 minutes"
+          }
+        }
+      }
+    },
+    "20 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "20 seconds"
+          }
+        }
+      }
+    },
+    "30 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 seconds"
+          }
+        }
+      }
+    },
+    "4 分鐘": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 minutes"
+          }
+        }
+      }
+    },
+    "API key": {
+      "shouldTranslate": false
+    },
+    "English": {
+      "shouldTranslate": false
+    },
+    "Groq": {
+      "shouldTranslate": false
+    },
+    "Groq、OpenAI 或自己的伺服器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groq, OpenAI or your own server"
+          }
+        }
+      }
+    },
+    "Lab": {
+      "shouldTranslate": false
+    },
+    "OpenAI": {
+      "shouldTranslate": false
+    },
+    "Stick": {
+      "shouldTranslate": false
+    },
+    "Stick 可能關機了，或不在附近。帶著手機到別的房間試試。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Stick may be off or out of range. Try another room with your phone."
+          }
+        }
+      }
+    },
+    "Stick 在睡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stick is asleep"
+          }
+        }
+      }
+    },
+    "Stick 在附近時會自動連上": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connects on its own when the Stick is nearby"
+          }
+        }
+      }
+    },
+    "Whisper 聽到的": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What Whisper heard"
+          }
+        }
+      }
+    },
+    "dBm": {
+      "shouldTranslate": false
+    },
+    "七天內": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 days"
+          }
+        }
+      }
+    },
+    "不睡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Never"
+          }
+        }
+      }
+    },
+    "不變暗": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Never"
+          }
+        }
+      }
+    },
+    "不關": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Never"
+          }
+        }
+      }
+    },
+    "不需要就留空": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leave empty if not needed"
+          }
+        }
+      }
+    },
+    "中文": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chinese"
+          }
+        }
+      }
+    },
+    "人名、專有名詞，用逗號隔開": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Names and terms, separated by commas"
+          }
+        }
+      }
+    },
+    "今天": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "今天平均": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today’s average"
+          }
+        }
+      }
+    },
+    "伸手就拿得到。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Within arm’s reach."
+          }
+        }
+      }
+    },
+    "停止": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "停止聲音": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Sound"
+          }
+        }
+      }
+    },
+    "儲存": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "內容": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Content"
+          }
+        }
+      }
+    },
+    "到控制中心打開藍牙": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Bluetooth in Control Center"
+          }
+        }
+      }
+    },
+    "到設定 › Stick 允許藍牙": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Bluetooth in Settings › Stick"
+          }
+        }
+      }
+    },
+    "前往": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        }
+      }
+    },
+    "劃掉的是 Whisper 聽到、整理時拿掉的；橘色是加上的。改了 %lld 處。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Struck-out text is what Whisper heard and polishing removed; orange is what it added. %lld changes."
+          }
+        }
+      }
+    },
+    "加入": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "加入 Stick 鍵盤": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add the Stick keyboard"
+          }
+        }
+      }
+    },
+    "加入地址、Email、電話這些常打的資料，在鍵盤上按一下就能打出來。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add things you type often, like an address, email or phone number. One tap on the keyboard types them."
+          }
+        }
+      }
+    },
+    "加入的顏文字會排在鍵盤顏文字面板的「我的」分類。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaomoji you add appear under “Mine” in the keyboard’s kaomoji panel."
+          }
+        }
+      }
+    },
+    "動態": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motion"
+          }
+        }
+      }
+    },
+    "半折時分開鍵盤": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split keyboard when half folded"
+          }
+        }
+      }
+    },
+    "即時調整 Stick 模型、打光、動態和頁面的樣子。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adjust the Stick model, lighting, motion and page look live."
+          }
+        }
+      }
+    },
+    "取消": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "名稱，例如：住家地址": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name, e.g. Home address"
+          }
+        }
+      }
+    },
+    "回到預設值": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset to Defaults"
+          }
+        }
+      }
+    },
+    "圓角": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corner Radius"
+          }
+        }
+      }
+    },
+    "在睡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asleep"
+          }
+        }
+      }
+    },
+    "在睡；按住 Stick 就醒。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asleep. Hold the Stick to wake it."
+          }
+        }
+      }
+    },
+    "填入相容 OpenAI API 的伺服器網址，結尾到 /v1，例如 whisper.cpp 或 LocalAI。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter the address of a server with an OpenAI-compatible API, ending in /v1, such as whisper.cpp or LocalAI."
+          }
+        }
+      }
+    },
+    "大概在隔壁房間的距離。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About a room away."
+          }
+        }
+      }
+    },
+    "字體": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "完成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "尋找": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        }
+      }
+    },
+    "尋找 Stick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Stick"
+          }
+        }
+      }
+    },
+    "尋找時的音量": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find volume"
+          }
+        }
+      }
+    },
+    "就在這裡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right here"
+          }
+        }
+      }
+    },
+    "已複製": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copied"
+          }
+        }
+      }
+    },
+    "已送到鍵盤": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sent to the keyboard"
+          }
+        }
+      }
+    },
+    "已連線": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected"
+          }
+        }
+      }
+    },
+    "已連線 · 電量 %lld%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected · Battery %lld%%"
+          }
+        }
+      }
+    },
+    "帶著手機走動看看。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walk around with your phone."
+          }
+        }
+      }
+    },
+    "常用寫法": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spellings"
+          }
+        }
+      }
+    },
+    "幾步之內，翻翻附近。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A few steps away. Look around."
+          }
+        }
+      }
+    },
+    "很遠": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Far"
+          }
+        }
+      }
+    },
+    "忘記": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forget"
+          }
+        }
+      }
+    },
+    "我的資訊": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Info"
+          }
+        }
+      }
+    },
+    "打光": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lighting"
+          }
+        }
+      }
+    },
+    "打字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typing"
+          }
+        }
+      }
+    },
+    "打開 Stick 放在手機旁邊": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on the Stick and keep it near your phone"
+          }
+        }
+      }
+    },
+    "打開 Stick，或在 Mac 上開 StickSim": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on the Stick, or open StickSim on a Mac"
+          }
+        }
+      }
+    },
+    "打開 Stick，配對卡會自己出現。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on the Stick and the pairing card appears."
+          }
+        }
+      }
+    },
+    "打開鍵盤設定": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Keyboard Settings"
+          }
+        }
+      }
+    },
+    "找不到 Stick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Stick found"
+          }
+        }
+      }
+    },
+    "按住 Stick 說話": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold the Stick to talk"
+          }
+        }
+      }
+    },
+    "按住它就醒，直接說": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold it to wake it, then talk"
+          }
+        }
+      }
+    },
+    "播放聲音": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Sound"
+          }
+        }
+      }
+    },
+    "攝影機": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera"
+          }
+        }
+      }
+    },
+    "收音": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mic gain"
+          }
+        }
+      }
+    },
+    "改了什麼": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes"
+          }
+        }
+      }
+    },
+    "放開到出字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release to text"
+          }
+        }
+      }
+    },
+    "放開後 %.1f 秒完成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done %.1f s after release"
+          }
+        }
+      }
+    },
+    "放開後，文字會打進 Stick 鍵盤": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release, and the text goes into the Stick keyboard"
+          }
+        }
+      }
+    },
+    "整理成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polish as"
+          }
+        }
+      }
+    },
+    "整理模型": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polish model"
+          }
+        }
+      }
+    },
+    "新增": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "新的資訊": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Info"
+          }
+        }
+      }
+    },
+    "更多": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More"
+          }
+        }
+      }
+    },
+    "最新 · %@ · %.1f 秒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest · %@ · %.1f s"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "最新 · %1$@ · %2$.1f 秒"
+          }
+        }
+      }
+    },
+    "最新結果字體": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest result font"
+          }
+        }
+      }
+    },
+    "有點距離": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some distance"
+          }
+        }
+      }
+    },
+    "服務": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service"
+          }
+        }
+      }
+    },
+    "朝一個方向走，Stick 往中間靠就對了。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walk in one direction; when the signal grows, you’re heading the right way."
+          }
+        }
+      }
+    },
+    "材質": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Material"
+          }
+        }
+      }
+    },
+    "標準": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
+          }
+        }
+      }
+    },
+    "模型名稱": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model name"
+          }
+        }
+      }
+    },
+    "模型清單更新於 %@。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model list updated %@."
+          }
+        }
+      }
+    },
+    "正在聽": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listening"
+          }
+        }
+      }
+    },
+    "正在讀模型清單。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading the model list."
+          }
+        }
+      }
+    },
+    "正在連線": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecting"
+          }
+        }
+      }
+    },
+    "步驟": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steps"
+          }
+        }
+      }
+    },
+    "沒有 key 時用 Apple Intelligence 整理，轉寫仍需 %@。Key 只存在這支手機的鑰匙圈裡。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without a key, Apple Intelligence polishes the text, but transcription still needs %@. The key stays in this phone’s keychain."
+          }
+        }
+      }
+    },
+    "沒有聽到內容": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Didn’t hear anything"
+          }
+        }
+      }
+    },
+    "沒有轉成功": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription failed"
+          }
+        }
+      }
+    },
+    "沒連上": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not connected"
+          }
+        }
+      }
+    },
+    "沒連上；靠近時會自動連回來。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not connected. Reconnects on its own when nearby."
+          }
+        }
+      }
+    },
+    "清除紀錄": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear History"
+          }
+        }
+      }
+    },
+    "用 Stick 說的話會出現在這裡": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What you say with the Stick appears here"
+          }
+        }
+      }
+    },
+    "稍早": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier"
+          }
+        }
+      }
+    },
+    "結束編輯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done Editing"
+          }
+        }
+      }
+    },
+    "網址": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Address"
+          }
+        }
+      }
+    },
+    "編輯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "聽不到": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No signal"
+          }
+        }
+      }
+    },
+    "聽原音": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play Original"
+          }
+        }
+      }
+    },
+    "自動": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic"
+          }
+        }
+      }
+    },
+    "自訂伺服器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom Server"
+          }
+        }
+      }
+    },
+    "自訂背景色": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom background"
+          }
+        }
+      }
+    },
+    "藍牙關著": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth is off"
+          }
+        }
+      }
+    },
+    "螢幕": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen"
+          }
+        }
+      }
+    },
+    "螢幕亮度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen brightness"
+          }
+        }
+      }
+    },
+    "複製": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "複製設定": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Settings"
+          }
+        }
+      }
+    },
+    "複製這個": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy This"
+          }
+        }
+      }
+    },
+    "襯線": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serif"
+          }
+        }
+      }
+    },
+    "訊號 %lld%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signal %lld%%"
+          }
+        }
+      }
+    },
+    "設定": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "設定 › 一般 › 鍵盤，並打開「允許完整取用」": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings › General › Keyboard, then turn on Allow Full Access"
+          }
+        }
+      }
+    },
+    "設定存在 Stick 上。睡著的 Stick 按住就醒，醒來就開始錄，連上手機後再送出。說話聽不清楚就把收音調高，破音就調低。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These settings live on the Stick. Hold a sleeping Stick to wake it: it starts recording at once and sends when the phone connects. Raise mic gain if speech is faint, lower it if it distorts."
+          }
+        }
+      }
+    },
+    "設定轉寫服務": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up transcription"
+          }
+        }
+      }
+    },
+    "語言": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        }
+      }
+    },
+    "說完後先轉成文字，再照這裡的設定整理一遍；整理不成就照原文送出。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech is transcribed, then polished with these settings. If polishing fails, the transcript goes in as spoken."
+          }
+        }
+      }
+    },
+    "貼上 gsk_ 開頭的 key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste the key starting with gsk_"
+          }
+        }
+      }
+    },
+    "貼上 sk- 開頭的 key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste the key starting with sk-"
+          }
+        }
+      }
+    },
+    "貼上或輸入顏文字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste or type a kaomoji"
+          }
+        }
+      }
+    },
+    "轉寫": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription"
+          }
+        }
+      }
+    },
+    "轉寫中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcribing"
+          }
+        }
+      }
+    },
+    "轉寫服務": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription Service"
+          }
+        }
+      }
+    },
+    "轉寫模型": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transcription model"
+          }
+        }
+      }
+    },
+    "這一句沒有整理過，打進去的就是 Whisper 聽到的。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This one wasn’t polished; what went in is what Whisper heard."
+          }
+        }
+      }
+    },
+    "這週": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week"
+          }
+        }
+      }
+    },
+    "連上 Stick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect the Stick"
+          }
+        }
+      }
+    },
+    "連上後才能讓它響": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect first to make it ring"
+          }
+        }
+      }
+    },
+    "連線": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect"
+          }
+        }
+      }
+    },
+    "還差幾步": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A few steps left"
+          }
+        }
+      }
+    },
+    "還沒有 Stick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Stick yet"
+          }
+        }
+      }
+    },
+    "還沒有更早的": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing earlier yet"
+          }
+        }
+      }
+    },
+    "還沒設定 %@ API key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No %@ API key yet"
+          }
+        }
+      }
+    },
+    "還沒讀到模型清單，先用預設的。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No model list yet; using the defaults."
+          }
+        }
+      }
+    },
+    "配對卡片": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pairing card"
+          }
+        }
+      }
+    },
+    "重播進場": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replay Entrance"
+          }
+        }
+      }
+    },
+    "鍵盤開著時自動打字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type automatically when the keyboard is open"
+          }
+        }
+      }
+    },
+    "閒置多久變暗": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dim after"
+          }
+        }
+      }
+    },
+    "閒置多久進入睡眠": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sleep after"
+          }
+        }
+      }
+    },
+    "閒置多久關螢幕": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen off after"
+          }
+        }
+      }
+    },
+    "關閉": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "電量": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery"
+          }
+        }
+      }
+    },
+    "電量 %lld%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery %lld%%"
+          }
+        }
+      }
+    },
+    "需要藍牙權限": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth permission needed"
+          }
+        }
+      }
+    },
+    "靠近了": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "頁面": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Page"
+          }
+        }
+      }
+    },
+    "預覽": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview"
+          }
+        }
+      }
+    },
+    "顏文字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaomoji"
+          }
+        }
+      }
+    },
+    "黑白（不用主題色）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monochrome (no accent)"
+          }
+        }
+      }
+    },
+    "點一下開始，再點一下送出": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap to start, tap again to send"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

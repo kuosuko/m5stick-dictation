@@ -1,0 +1,15 @@
+{
+  "sourceLanguage" : "zh-Hant",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "shouldTranslate" : false
+    },
+    "NSBluetoothAlwaysUsageDescription" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bluetooth receives the audio your Stick records." } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "用藍牙接收 Stick 錄到的聲音。" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

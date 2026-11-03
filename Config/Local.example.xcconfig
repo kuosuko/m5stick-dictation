@@ -1,0 +1,4 @@
+// Copy to Local.xcconfig and fill in. The app, its keyboard and their app
+// group are all named from this prefix.
+BUNDLE_ID_PREFIX = com.yourname.stickdictation
+DEVELOPMENT_TEAM = ABCDE12345

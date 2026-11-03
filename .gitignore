@@ -1,0 +1,14 @@
+# Xcode build output (xcodebuild -derivedDataPath build / build-sim)
+build/
+build-sim/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Offline renders and bundles made by Design/StickRender
+*.bundle
+
+.DS_Store
+
+# Your own team and bundle identifiers (Config/Local.example.xcconfig)
+Config/Local.xcconfig

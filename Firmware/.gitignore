@@ -1,0 +1,5 @@
+.pio/
+backup/
+managed_components/
+.dummy/
+tools/pio.local
