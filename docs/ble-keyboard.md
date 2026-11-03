@@ -13,6 +13,8 @@ Most other languages don't have this problem. Anything written in the Latin alph
 
 The StickS3 can also present itself as a **Bluetooth LE keyboard** (HID over GATT), and type the result into whatever is focused, like a real keyboard would. No custom keyboard, no switching.
 
+And the screen gets bigger. While a hardware keyboard is connected, iOS hides the on-screen keyboard, so the app you are writing in gets the whole screen and the Stick is the keyboard. The on-screen one comes back from the keyboard button in the corner when you need it.
+
 ```mermaid
 flowchart LR
     stick["StickS3"] -- "audio" --> app["Stick app"]
@@ -29,7 +31,7 @@ flowchart LR
 ## Trade-offs
 
 - **No Chinese, Japanese, Korean or emoji.** That's what the Stick keyboard is for. Accented letters need the matching layout or dead keys, so plain ASCII is the safe start.
-- **The on-screen keyboard hides.** While iOS sees a hardware keyboard, it hides the on-screen one. That clashes with the Stick keyboard, so this would be a mode you choose, not both at once.
+- **One mode at a time.** With the on-screen keyboard hidden, the Stick keyboard is hidden too, so this would be a mode you choose for English, not something running beside Chinese dictation.
 - **The phone's layout must be US.** HID sends key positions, not characters; a different hardware keyboard layout in iOS settings would type the wrong letters.
 
 ## Also possible once it is a keyboard
