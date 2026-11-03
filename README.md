@@ -27,7 +27,7 @@
 |---|---|
 | **Stick** | Hold to talk, or tap to start and tap to send. Deep-sleeps after 15 seconds idle; a press wakes it and it records while the phone reconnects. Screen in Chinese or English, following the phone |
 | **iPhone app** | Pairing, transcription, polish, history, Stick settings. Used daily on an iPhone Duo (iOS 27) |
-| **Stick keyboard** | Types results into any text field; Zhuyin typing from McBopomofo; saved snippets and kaomoji |
+| **Stick keyboard** | Types results into any text field; inserts the last result again, saved snippets and kaomoji |
 | **Transcription** | Groq in daily use. OpenAI and OpenAI-compatible servers are supported but not yet tried |
 
 ## Quick start
