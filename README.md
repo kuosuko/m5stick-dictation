@@ -19,7 +19,7 @@
 > You need an [M5Stack StickS3](https://docs.m5stack.com/en/core/StickS3) and an API key for a transcription service (Groq or OpenAI), or a transcription server of your own. The project is not affiliated with M5Stack, Groq or OpenAI.
 
 > [!TIP]
-> **Only write English?** The Stick could also act as a Bluetooth keyboard and type the result into any app, without switching keyboards. Not built yet: see [the Stick as a Bluetooth keyboard](docs/ble-keyboard.md).
+> **Only write English?** The Stick keyboard exists because Chinese can't be typed with key presses; it has to be inserted by a keyboard on the phone. English can, so the Stick could act as a Bluetooth keyboard and type into any app without switching keyboards. Not built yet: see [the Stick as a Bluetooth keyboard](docs/ble-keyboard.md).
 
 ## Status
 

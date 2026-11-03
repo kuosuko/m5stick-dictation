@@ -3,9 +3,13 @@
 > [!NOTE]
 > Not built yet. This describes a direction that fits English-only users well, and what it would take.
 
-Today the result reaches the text field through the Stick keyboard, a keyboard extension you switch to. That is needed for Chinese: there is no way to type Chinese characters other than an input method on the phone.
+## Why there is a keyboard extension at all
 
-If you only write English (or another language written in plain ASCII), there is a simpler path. The StickS3 can also present itself as a **Bluetooth LE keyboard** (HID over GATT), and type the result into whatever is focused, like a real keyboard would. No custom keyboard, no switching.
+Today the result reaches the text field through the Stick keyboard, a keyboard extension you switch to. It exists for one reason: **Chinese.** A key press can only send a key position, and there is no key for 你. Chinese (and Japanese and Korean) text is composed by an input method on the phone, so a Bluetooth keyboard can't type it. A keyboard extension can: it calls `insertText` with whatever text it is given.
+
+Most other languages don't have this problem. Anything written in the Latin alphabet can be typed key by key, so if you write English, a simpler path is open.
+
+## The idea The StickS3 can also present itself as a **Bluetooth LE keyboard** (HID over GATT), and type the result into whatever is focused, like a real keyboard would. No custom keyboard, no switching.
 
 ```mermaid
 flowchart LR
@@ -22,7 +26,7 @@ flowchart LR
 
 ## Trade-offs
 
-- **ASCII only.** Keystrokes can't produce Chinese, Japanese or emoji. Accents and curly quotes would need to be simplified, or skipped.
+- **No Chinese, Japanese, Korean or emoji.** That's what the Stick keyboard is for. Accented letters need the matching layout or dead keys, so plain ASCII is the safe start.
 - **The on-screen keyboard hides.** While iOS sees a hardware keyboard, it hides the on-screen one. That clashes with the Stick keyboard, so this would be a mode you choose, not both at once.
 - **The phone's layout must be US.** HID sends key positions, not characters; a different hardware keyboard layout in iOS settings would type the wrong letters.
 

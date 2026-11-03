@@ -19,7 +19,7 @@
 > 需要一台 [M5Stack StickS3](https://docs.m5stack.com/zh_CN/core/StickS3)，以及轉寫服務（Groq 或 OpenAI）的 API key，或自架的轉寫伺服器。本專案與 M5Stack、Groq、OpenAI 無關。
 
 > [!TIP]
-> **只打英文？** Stick 也能當成藍牙鍵盤，直接把結果打進任何 App，不必切換鍵盤。尚未實作，見[把 Stick 當成藍牙鍵盤](docs/ble-keyboard.md)（英文）。
+> **只打英文？** 會有 Stick 鍵盤，是因為中文無法靠按鍵打出來，只能由手機上的鍵盤插入文字。英文可以逐鍵輸入，所以 Stick 也能當成藍牙鍵盤，直接打進任何 App，不必切換鍵盤。尚未實作，見[把 Stick 當成藍牙鍵盤](docs/ble-keyboard.md)（英文）。
 
 ## 現況
 
