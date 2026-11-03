@@ -20,7 +20,7 @@
 
 ## Status
 
-| | |
+| Part | State |
 |---|---|
 | **Stick** | Hold to talk, or tap to start and tap to send. Deep-sleeps after 15 seconds idle; a press wakes it and it records while the phone reconnects. Screen in Chinese or English, following the phone |
 | **iPhone app** | Pairing, transcription, polish, history, Stick settings. Used daily on an iPhone Duo (iOS 27) |
@@ -38,11 +38,25 @@
 
 ## How it works
 
+```mermaid
+flowchart LR
+    stick["StickS3<br/>records while you hold"] -- "Bluetooth LE<br/>ADPCM audio" --> app["Stick app<br/>on iPhone"]
+    app -- "AAC upload" --> stt["Groq / OpenAI /<br/>your server"]
+    stt -- "transcript" --> app
+    app -- "polish (optional)" --> app
+    app -- "app group" --> kb["Stick keyboard"]
+    kb -- "types it" --> field["the text field<br/>you are in"]
+```
+
+<img src="docs/images/app-home-en.png" width="360" align="right" alt="The Stick app home on an iPhone Duo">
+
 - **The Stick records and streams.** 16 kHz audio, compressed to IMA ADPCM, goes over Bluetooth LE as it is spoken. See [PROTOCOL.md](PROTOCOL.md).
 - **It sleeps between dictations.** A press wakes it from deep sleep and the microphone starts before Bluetooth does. Up to 120 seconds of audio wait in PSRAM until the phone reconnects, so the first word is kept.
 - **The iPhone transcribes.** Silence is trimmed, the speech is encoded as AAC and uploaded. Whisper gets no prompt: a prompt makes it echo text on silence.
 - **Polish is optional.** A chat model (or Apple Intelligence on the phone) fixes punctuation, filler words and self-corrections, or changes the tone.
 - **The keyboard types it.** iOS doesn't let a background app paste, so results go to an app group the Stick keyboard reads and inserts from.
+
+<br clear="right">
 
 ## FAQ
 

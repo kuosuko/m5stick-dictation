@@ -20,7 +20,7 @@
 
 ## 現況
 
-| | |
+| 部分 | 現況 |
 |---|---|
 | **Stick** | 按住說話，或點一下開始、再點一下送出。閒置 15 秒進入深度睡眠；按一下即醒，手機重新連上前已在錄音。螢幕跟隨手機語言，中文或英文 |
 | **iPhone App** | 配對、轉寫、整理、紀錄、Stick 設定。每天在 iPhone Duo（iOS 27）上使用 |
@@ -38,11 +38,25 @@
 
 ## 運作方式
 
+```mermaid
+flowchart LR
+    stick["StickS3<br/>按住時錄音"] -- "Bluetooth LE<br/>ADPCM 聲音" --> app["iPhone 上的<br/>Stick App"]
+    app -- "上傳 AAC" --> stt["Groq / OpenAI /<br/>自架伺服器"]
+    stt -- "轉寫結果" --> app
+    app -- "整理（可關）" --> app
+    app -- "App Group" --> kb["Stick 鍵盤"]
+    kb -- "打字" --> field["正在輸入的<br/>文字框"]
+```
+
+<img src="docs/images/app-home-zh.png" width="360" align="right" alt="iPhone Duo 上的 Stick App 首頁">
+
 - **Stick 錄音並即時傳送。** 16 kHz 的聲音壓成 IMA ADPCM，一邊說一邊經藍牙 LE 送出。詳見 [PROTOCOL.md](PROTOCOL.md)。
 - **兩次聽寫之間 Stick 會睡著。** 按鍵把它從深度睡眠叫醒，麥克風比藍牙先啟動。手機連回來之前，最多 120 秒的聲音暫存在 PSRAM，第一個字不會掉。
 - **iPhone 負責轉寫。** 先切掉靜音，把說話的部分轉成 AAC 再上傳。Whisper 不帶任何 prompt：帶了 prompt，靜音時會把 prompt 的內容吐回來。
 - **整理可開可關。** 由聊天模型（或手機上的 Apple Intelligence）補標點、刪贅字、處理說錯重講，或改寫語氣。
 - **鍵盤負責打字。** iOS 不讓背景中的 App 貼上，所以結果先放進 App Group，再由 Stick 鍵盤讀出、插入。
+
+<br clear="right">
 
 ## 常見問題
 

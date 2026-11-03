@@ -55,11 +55,26 @@ struct DemoScenario {
         )
     }
 
-    private static let sample: [Dictation] = [
-        entry("我今天想去台北，晚上一起吃飯嗎？", minutesAgo: 0.1, seconds: 3.8, latency: 0.7,
+    /// In the language the app is showing, so screenshots read in one language.
+    private static var sample: [Dictation] {
+        Bundle.main.preferredLocalizations.first?.hasPrefix("en") == true ? englishSample : chineseSample
+    }
+
+    private static let chineseSample: [Dictation] = [
+        // Polish kept the correction: 台北 was taken back in the same breath.
+        entry("我今天想去台中，晚上一起吃飯嗎？", minutesAgo: 0.1, seconds: 3.8, latency: 0.7,
               heard: "嗯我今天想去台北 不對是台中 晚上一起吃飯嗎"),
         entry("記得把簡報的第三頁換成新的數字。", minutesAgo: 12, seconds: 4.2, latency: 0.8),
-        entry("Let's push the release to Friday.", minutesAgo: 47, seconds: 2.9, latency: 0.6),
+        entry("Claude, make GTA 7. Make no mistakes.", minutesAgo: 47, seconds: 2.9, latency: 0.6),
         entry("幫我查一下明天早上的高鐵班次，九點以前到台中。", minutesAgo: 95, seconds: 5.6, latency: 0.9),
+    ]
+
+    private static let englishSample: [Dictation] = [
+        entry("Want to grab dinner in Brooklyn tonight?", minutesAgo: 0.1, seconds: 3.4, latency: 0.7,
+              heard: "um want to grab dinner in Queens no wait Brooklyn tonight"),
+        entry("Swap the numbers on slide three for the new ones.", minutesAgo: 12, seconds: 4.0, latency: 0.8),
+        entry("Claude, make GTA 7. Make no mistakes.", minutesAgo: 47, seconds: 2.9, latency: 0.6),
+        entry("Find me a train tomorrow morning that gets to Boston before nine.", minutesAgo: 95, seconds: 5.2,
+              latency: 0.9),
     ]
 }

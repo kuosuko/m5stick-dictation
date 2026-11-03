@@ -821,7 +821,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hold the Stick to talk"
+            "value": "Hold to talk"
           }
         }
       }
@@ -901,7 +901,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Release, and the text goes into the Stick keyboard"
+            "value": "Let go and it types"
           }
         }
       }
