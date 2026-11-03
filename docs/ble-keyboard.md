@@ -13,7 +13,7 @@ Most other languages don't have this problem. Anything written in the Latin alph
 
 The StickS3 can also present itself as a **Bluetooth LE keyboard** (HID over GATT), and type the result into whatever is focused, like a real keyboard would. No custom keyboard, no switching.
 
-And the screen gets bigger. While a hardware keyboard is connected, iOS hides the on-screen keyboard, so the app you are writing in gets the whole screen and the Stick is the keyboard. The on-screen one comes back from the keyboard button in the corner when you need it.
+And the screen gets bigger. When you are talking instead of typing, the on-screen keyboard has nothing to do, yet it takes half the screen. While a hardware keyboard is connected, iOS hides it, so the app you are writing in gets the whole screen and the Stick is the keyboard. The on-screen one comes back from the keyboard button in the corner when you need it.
 
 ```mermaid
 flowchart LR
