@@ -9,7 +9,9 @@ Today the result reaches the text field through the Stick keyboard, a keyboard e
 
 Most other languages don't have this problem. Anything written in the Latin alphabet can be typed key by key, so if you write English, a simpler path is open.
 
-## The idea The StickS3 can also present itself as a **Bluetooth LE keyboard** (HID over GATT), and type the result into whatever is focused, like a real keyboard would. No custom keyboard, no switching.
+## The idea
+
+The StickS3 can also present itself as a **Bluetooth LE keyboard** (HID over GATT), and type the result into whatever is focused, like a real keyboard would. No custom keyboard, no switching.
 
 ```mermaid
 flowchart LR
