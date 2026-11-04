@@ -31,6 +31,16 @@
         }
       }
     },
+    "%@ · %@": {
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ · %2$@"
+          }
+        }
+      }
+    },
     "%@ 回應 %lld：%@": {
       "localizations": {
         "en": {
@@ -75,6 +85,16 @@
           "stringUnit": {
             "state": "new",
             "value": "%1$@ 已停用，轉寫改用 %2$@。"
+          }
+        }
+      }
+    },
+    "%@ 的回覆看不懂，下次再試。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t read %@’s reply; it will try again next time."
           }
         }
       }
@@ -576,6 +596,7 @@
         }
       }
     },
+    "同一批文字交給裝置上的 Apple Intelligence、Private Cloud Compute 和目前的整理服務，結果存在 App 的 Documents/model-bench.json。": {},
     "名稱，例如：住家地址": {
       "localizations": {
         "en": {
@@ -1092,6 +1113,16 @@
         }
       }
     },
+    "整理結果只存在這支手機，用於整理文字，並可能替你加入我的資訊。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What it learns stays on this phone, helps polish your text, and may add entries to My Info."
+          }
+        }
+      }
+    },
     "新增": {
       "localizations": {
         "en": {
@@ -1218,6 +1249,7 @@
         }
       }
     },
+    "模型比較": {},
     "模型清單更新於 %@。": {
       "localizations": {
         "en": {
@@ -1288,16 +1320,33 @@
         }
       }
     },
-    "每累積 %lld 段聽寫，打開 App 時用 Apple 的 Private Cloud Compute 整理一次，Apple 也無法讀取內容。整理結果只存在這支手機，用於整理文字，並可能替你加入我的資訊。": {
+    "每累積 %lld 段聽寫，打開 App 時交給 %@ 整理一次。": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every %lld dictations, opening the app has Apple’s Private Cloud Compute read them; not even Apple can see what it reads. What it learns stays on this phone, helps polish your text, and may add entries to My Info."
+            "value": "Every %lld dictations, opening the app has %@ read them."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "每累積 %1$lld 段聽寫，打開 App 時交給 %2$@ 整理一次。"
           }
         }
       }
     },
+    "每累積 %lld 段聽寫，打開 App 時用 Apple 的 Private Cloud Compute 整理一次，Apple 也無法讀取內容。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %lld dictations, opening the app has Apple’s Private Cloud Compute read them; not even Apple can see what it reads."
+          }
+        }
+      }
+    },
+    "比較中…": {},
     "沒有 key 時用 Apple Intelligence 整理，轉寫仍需 %@。Key 只存在這支手機的鑰匙圈裡。": {
       "localizations": {
         "en": {
@@ -1518,6 +1567,7 @@
         }
       }
     },
+    "裝置上的模型": {},
     "複製": {
       "localizations": {
         "en": {
@@ -1748,16 +1798,6 @@
         }
       }
     },
-    "這支手機目前用不到 Private Cloud Compute。": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Private Cloud Compute isn’t available on this phone right now."
-          }
-        }
-      }
-    },
     "這週": {
       "localizations": {
         "en": {
@@ -1888,6 +1928,7 @@
         }
       }
     },
+    "開始比較": {},
     "閒置多久變暗": {
       "localizations": {
         "en": {
@@ -1944,6 +1985,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Battery %lld%%"
+          }
+        }
+      }
+    },
+    "需要 Apple 的 Private Cloud Compute，或在轉寫服務改用 OpenAI 或自己的伺服器。Groq 的免費額度不夠讀完一輪。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needs Apple’s Private Cloud Compute, or OpenAI or your own server as the transcription service. Groq’s free tier can’t finish a round."
           }
         }
       }

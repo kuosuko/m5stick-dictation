@@ -233,6 +233,8 @@ struct ChatRewriter: TextRewriter {
     let apiKey: String
     /// Picked from the provider's live list (`ProviderModels`).
     let model: String
+    /// A late polish is worse than none; Dreaming can wait longer.
+    var timeout: TimeInterval = 8
 
     func rewrite(system: String, user: String) async throws -> String {
         struct Message: Codable { let role: String; let content: String? }
@@ -248,8 +250,7 @@ struct ChatRewriter: TextRewriter {
         }
         var request = URLRequest(url: provider.endpoint("chat/completions"))
         request.httpMethod = "POST"
-        // A late polish is worse than none; the transcript goes in instead.
-        request.timeoutInterval = 8
+        request.timeoutInterval = timeout
         if !apiKey.isEmpty { request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization") }
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONEncoder().encode(Body(

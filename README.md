@@ -28,7 +28,7 @@
 | **Stick** | Hold to talk, or tap to start and tap to send. Deep-sleeps after 15 seconds idle; a press wakes it and it records while the phone reconnects. Screen in Chinese or English, following the phone |
 | **iPhone app** | Pairing, transcription, polish, history, Stick settings. Used daily on an iPhone Duo (iOS 27) |
 | **Stick keyboard** | Types results into any text field. Rewrites the last sentence in a style, or the way you say into the Stick ("shorter", "make it a question"), with undo. The last result again, saved snippets, kaomoji |
-| **Dreaming** | Every 10 dictations, Apple's Private Cloud Compute reads them and keeps a short profile of you and a spelling list for polish, editable in settings. iOS 27, and your App ID needs the Private Cloud Compute capability |
+| **Dreaming** | Every 10 dictations, a model reads them and keeps a short profile of you and a spelling list for polish, editable in settings. Apple's Private Cloud Compute when the app has it (iOS 27); otherwise your OpenAI or own server. Not Groq: its free tier runs out on a round |
 | **Transcription** | Groq in daily use. OpenAI and OpenAI-compatible servers are supported but not yet tried |
 
 ## Quick start
@@ -91,7 +91,7 @@ open StickDictation.xcodeproj
 
 Run the `DuoDictate` scheme on your iPhone. The app, its keyboard and their app group are all named from the bundle prefix in `Local.xcconfig`.
 
-Dreaming uses Apple's Private Cloud Compute, which your App ID needs approval for. Without it the app builds and runs without Dreaming; with it, set `STICK_APP_ENTITLEMENTS = iOS/Stick-PCC.entitlements` in `Local.xcconfig`.
+Dreaming uses Apple's Private Cloud Compute, which your App ID needs approval for. Without it, Dreaming uses your OpenAI or own server instead; with it, set `STICK_APP_ENTITLEMENTS = iOS/Stick-PCC.entitlements` in `Local.xcconfig`.
 
 ## Install without Xcode
 

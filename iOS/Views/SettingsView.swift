@@ -82,9 +82,7 @@ struct SettingsView: View {
                     Text(providerFooter)
                 }
 
-                if #available(iOS 27.0, *) {
-                    DreamingSection(dreaming: store.dreaming, history: store.history)
-                }
+                DreamingSection(dreaming: store.dreaming, history: store.history)
 
                 Section {
                     NavigationLink("Lab") { LabView(link: link, store: store) }
@@ -339,7 +337,16 @@ private struct DreamingSection: View {
 
     private var footer: String {
         if let error = dreaming.lastError { return error }
-        var lines = [String(localized: "每累積 \(Dreaming.threshold) 段聽寫，打開 App 時用 Apple 的 Private Cloud Compute 整理一次，Apple 也無法讀取內容。整理結果只存在這支手機，用於整理文字，並可能替你加入我的資訊。")]
+        let how: String
+        switch dreaming.engine {
+        case .privateCloudCompute:
+            how = String(localized: "每累積 \(Dreaming.threshold) 段聽寫，打開 App 時用 Apple 的 Private Cloud Compute 整理一次，Apple 也無法讀取內容。")
+        case .chat(let name):
+            how = String(localized: "每累積 \(Dreaming.threshold) 段聽寫，打開 App 時交給 \(name) 整理一次。")
+        case .none(let reason):
+            return reason
+        }
+        var lines = [how + String(localized: "整理結果只存在這支手機，用於整理文字，並可能替你加入我的資訊。")]
         if dreaming.isEnabled {
             lines.append(String(localized: "還有 \(dreaming.unread(in: history).count) 段沒讀過。"))
         }

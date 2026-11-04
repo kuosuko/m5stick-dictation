@@ -28,7 +28,7 @@
 | **Stick** | 按住說話，或點一下開始、再點一下送出。閒置 15 秒進入深度睡眠；按一下即醒，手機重新連上前已在錄音。螢幕跟隨手機語言，中文或英文 |
 | **iPhone App** | 配對、轉寫、整理、紀錄、Stick 設定。每天在 iPhone Duo（iOS 27）上使用 |
 | **Stick 鍵盤** | 把結果打進任何輸入框。改寫上一句：選一種風格，或按住 Stick 說要怎麼改（「短一點」「改成問句」），可復原。再插入上一句、常用資訊與顏文字 |
-| **Dreaming** | 每累積 10 段聽寫，由 Apple 的 Private Cloud Compute 讀過，整理出一段對你的描述和一份給整理用的詞彙表，可在設定裡修改。需要 iOS 27，App ID 也要有 Private Cloud Compute 權限 |
+| **Dreaming** | 每累積 10 段聽寫，由模型讀過，整理出一段對你的描述和一份給整理用的詞彙表，可在設定裡修改。有權限時用 Apple 的 Private Cloud Compute（iOS 27）；沒有時改用你的 OpenAI 或自架伺服器。不支援 Groq：免費額度不夠讀完一輪 |
 | **轉寫服務** | 日常使用 Groq。OpenAI 與相容 OpenAI API 的伺服器已支援，尚未實測 |
 
 ## 快速開始
@@ -91,7 +91,7 @@ open StickDictation.xcodeproj
 
 在 iPhone 上執行 `DuoDictate` scheme。App、鍵盤和兩者共用的 App Group，都依 `Local.xcconfig` 的 bundle 前綴命名。
 
-Dreaming 使用 Apple 的 Private Cloud Compute，App ID 需要 Apple 核准這項權限。沒有權限照樣能編譯和使用，只是沒有 Dreaming；有權限的話，在 `Local.xcconfig` 加上 `STICK_APP_ENTITLEMENTS = iOS/Stick-PCC.entitlements`。
+Dreaming 使用 Apple 的 Private Cloud Compute，App ID 需要 Apple 核准這項權限。沒有權限照樣能編譯和使用，Dreaming 改用你的 OpenAI 或自架伺服器；有權限的話，在 `Local.xcconfig` 加上 `STICK_APP_ENTITLEMENTS = iOS/Stick-PCC.entitlements`。
 
 ## 不用 Xcode 安裝
 

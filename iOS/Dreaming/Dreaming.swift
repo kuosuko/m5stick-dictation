@@ -78,8 +78,25 @@ final class Dreaming {
     }
 
     /// Private Cloud Compute is iOS 27 and later.
+    /// The user's own chat service, for phones without Private Cloud Compute.
+    /// Set by the store; nil for Groq, whose free tier can't take a round.
+    var chatService: ChatRewriter?
+
+    enum Engine: Equatable {
+        case privateCloudCompute
+        case chat(String)
+        /// Neither: the reason, for settings.
+        case none(String)
+    }
+
+    var engine: Engine {
+        if #available(iOS 27.0, *), PrivateCloudComputeLanguageModel().isAvailable { return .privateCloudCompute }
+        if let chatService { return .chat(chatService.provider.name) }
+        return .none(String(localized: "需要 Apple 的 Private Cloud Compute，或在轉寫服務改用 OpenAI 或自己的伺服器。Groq 的免費額度不夠讀完一輪。"))
+    }
+
     var isAvailable: Bool {
-        if #available(iOS 27.0, *) { PrivateCloudComputeLanguageModel().isAvailable } else { false }
+        if case .none = engine { false } else { true }
     }
 
     /// Dictations with text that the profile hasn't read yet.
@@ -102,7 +119,7 @@ final class Dreaming {
         let new = unread.isEmpty ? Array(history.filter { $0.text != nil }.prefix(20)) : unread
         guard !isDreaming, !new.isEmpty else { return }
         guard #available(iOS 27.0, *), case let model = PrivateCloudComputeLanguageModel(), model.isAvailable else {
-            lastError = String(localized: "這支手機目前用不到 Private Cloud Compute。")
+            await dreamWithChat(new)
             return
         }
         isDreaming = true
@@ -168,14 +185,65 @@ final class Dreaming {
         do {
             let session = LanguageModelSession(model: model, instructions: Self.instructions)
             let dream = try await session.respond(to: prompt(for: new), generating: Dream.self).content
-            let learnedTerms = merge(dream, readUpTo: new.map(\.date).max())
-            let addedCards = addCards(dream.cards)
-            lastChange = summary(terms: learnedTerms, cards: addedCards)
-            logger.info("dreamed over \(new.count) dictations: \(learnedTerms) terms, \(addedCards) cards")
+            apply(dream, from: new)
         } catch {
             lastError = error.localizedDescription
             logger.error("dreaming failed: \(error.localizedDescription)")
         }
+    }
+
+    /// Without Private Cloud Compute: the user's OpenAI or own server, asked
+    /// for the same fields as JSON. A plain network call, short enough to run
+    /// in the foreground.
+    private func dreamWithChat(_ new: [Dictation]) async {
+        guard var chat = chatService else {
+            if case let .none(reason) = engine { lastError = reason }
+            return
+        }
+        chat.timeout = 60
+        isDreaming = true
+        lastError = nil
+        defer { isDreaming = false }
+        let system = Self.instructions + """
+
+            Reply with JSON only, no other text: {"about": string, "topics": [string], "terms": [string], \
+            "cards": [{"title": string, "text": string}]}. \
+            about: two to four sentences about the speaker, in the language they dictate in most. \
+            topics: at most 8 subjects. \
+            terms: at most 40, the whole cleaned spelling list, only words a speech recognizer is likely \
+            to get wrong (names, products, places, English inside Chinese, jargon). \
+            cards: the speaker's own email, phone, address, company or website when a dictation states \
+            them as theirs, else an empty list.
+            """
+        do {
+            let raw = try await chat.rewrite(system: system, user: prompt(for: new))
+            guard let start = raw.firstIndex(of: "{"), let end = raw.lastIndex(of: "}"),
+                  let reply = try? JSONDecoder().decode(ChatDream.self, from: Data(raw[start...end].utf8)) else {
+                lastError = String(localized: "\(chat.provider.name) 的回覆看不懂，下次再試。")
+                return
+            }
+            apply(Dream(about: reply.about, topics: Array(reply.topics.prefix(8)), terms: Array(reply.terms.prefix(40)),
+                        cards: (reply.cards ?? []).prefix(6).map { LearnedCard(title: $0.title, text: $0.text) }),
+                  from: new)
+        } catch {
+            lastError = error.localizedDescription
+            logger.error("dreaming with \(chat.provider.name) failed: \(error.localizedDescription)")
+        }
+    }
+
+    private struct ChatDream: Decodable {
+        struct Card: Decodable { let title: String; let text: String }
+        let about: String
+        let topics: [String]
+        let terms: [String]
+        let cards: [Card]?
+    }
+
+    private func apply(_ dream: Dream, from new: [Dictation]) {
+        let learnedTerms = merge(dream, readUpTo: new.map(\.date).max())
+        let addedCards = addCards(dream.cards)
+        lastChange = summary(terms: learnedTerms, cards: addedCards)
+        logger.info("dreamed over \(new.count) dictations: \(learnedTerms) terms, \(addedCards) cards")
     }
 
     /// A learned word, corrected by the user; empty removes it.

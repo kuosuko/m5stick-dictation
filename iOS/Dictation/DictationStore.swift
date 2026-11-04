@@ -172,6 +172,10 @@ final class DictationStore {
     func refreshSetup() {
         keyboardReady = SharedInbox.read().keyboardSeenAt != nil
         shareSetup()
+        // Without Private Cloud Compute, Dreaming uses the user's own service,
+        // except Groq: its free tier runs out on a round.
+        dreaming.chatService = providerKind != .groq && providerReady && !effectivePolishModel.isEmpty
+            ? ChatRewriter(provider: provider, apiKey: apiKey, model: effectivePolishModel) : nil
         let history = history
         Task { await dreaming.dreamIfDue(history: history) }
         // Providers retire models without warning; a day-old list is old enough to recheck.
