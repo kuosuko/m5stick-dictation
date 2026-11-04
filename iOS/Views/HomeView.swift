@@ -109,6 +109,7 @@ struct HomeView: View {
         }
         .modifier(HingeObserver(isPartiallyOpen: $hingePartiallyOpen))
         .animation(.spring(duration: 0.45, bounce: 0), value: hingePartiallyOpen)
+        .overlay(alignment: .top) { DreamingBadge(dreaming: store.dreaming) }
     }
 
     // MARK: Layouts
@@ -836,5 +837,45 @@ private struct SheetStack<Content: View>: View {
                 }
             }
         }
+    }
+}
+
+/// While Stick reads the latest dictations, and for a moment after: what it learned.
+private struct DreamingBadge: View {
+    let dreaming: Dreaming
+
+    var body: some View {
+        Group {
+            if dreaming.isDreaming {
+                badge {
+                    ProgressView().controlSize(.small)
+                    Text(String(localized: "正在從最近的聽寫認識你"))
+                }
+            } else if let change = dreaming.lastChange {
+                badge {
+                    Image(systemName: "checkmark")
+                    Text(change)
+                }
+                .task {
+                    try? await Task.sleep(for: .seconds(4))
+                    dreaming.clearLastChange()
+                }
+            }
+        }
+        .animation(.spring(duration: 0.4, bounce: 0), value: dreaming.isDreaming)
+        .animation(.spring(duration: 0.4, bounce: 0), value: dreaming.lastChange)
+    }
+
+    private func badge(@ViewBuilder content: () -> some View) -> some View {
+        HStack(spacing: 8) {
+            ParrotMark(height: 12)
+            content()
+        }
+        .font(.footnote.weight(.medium))
+        .padding(.horizontal, 14)
+        .padding(.vertical, 9)
+        .glassEffect(.regular, in: .capsule)
+        .padding(.top, 6)
+        .transition(.move(edge: .top).combined(with: .opacity))
     }
 }

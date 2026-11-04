@@ -72,6 +72,16 @@ final class DictationStore {
     var polishStyleID: String {
         didSet { UserDefaults.standard.set(polishStyleID, forKey: "polishStyle") }
     }
+    /// How the user asked for their text to be rewritten, for the 自訂 style.
+    var customStyle: String {
+        didSet {
+            UserDefaults.standard.set(customStyle, forKey: "customStyle")
+            shareSetup()
+        }
+    }
+    var polishStyle: PolishStyle {
+        polishStyleID == PolishStyle.customID && !customStyle.isEmpty ? .custom(customStyle) : .withID(polishStyleID)
+    }
     /// The user's picks. What actually runs is `effective…`, which swaps in a
     /// model the provider still offers when the pick has been retired.
     var transcriptionModel: String {
@@ -107,6 +117,9 @@ final class DictationStore {
         }
     }
 
+    /// What Stick has learned about the speaker, for polish.
+    let dreaming = Dreaming()
+
     @ObservationIgnored private let link: StickLink
     @ObservationIgnored private let logger = Logger(subsystem: "DuoDictate", category: "dictation")
     private static let historyKey = "history"
@@ -123,6 +136,7 @@ final class DictationStore {
         let savedVocabulary = UserDefaults.standard.string(forKey: "vocabulary") ?? ""
         vocabulary = savedVocabulary == "以下是繁體中文的句子。" ? "" : savedVocabulary
         polishStyleID = UserDefaults.standard.string(forKey: "polishStyle") ?? PolishStyle.cleanID
+        customStyle = UserDefaults.standard.string(forKey: "customStyle") ?? ""
         let shared = SharedInbox.read()
         autoInsert = shared.autoInsert
         if let data = UserDefaults.standard.data(forKey: Self.historyKey),
@@ -157,6 +171,9 @@ final class DictationStore {
     /// Re-reads what the keyboard has reported; call when the app comes to the front.
     func refreshSetup() {
         keyboardReady = SharedInbox.read().keyboardSeenAt != nil
+        shareSetup()
+        let history = history
+        Task { await dreaming.dreamIfDue(history: history) }
         // Providers retire models without warning; a day-old list is old enough to recheck.
         if Date.now.timeIntervalSince(modelLists?.fetchedAt ?? .distantPast) > 12 * 3600 {
             Task { await refreshModels() }
@@ -198,6 +215,20 @@ final class DictationStore {
         lastWarmUp = .now
         let key = apiKey, provider = provider
         Task { await Transcriber.warmUp(provider, apiKey: key) }
+    }
+
+    /// What the keyboard needs to rewrite text on its own (its 改寫 panel).
+    func shareSetup() {
+        let learned = dreaming.isEnabled ? dreaming.profile : nil
+        let provider = provider
+        let setup = SharedInbox.PolishSetup(
+            providerName: provider.name, baseURL: provider.baseURL.absoluteString, needsKey: provider.needsKey,
+            keychainAccount: provider.keychainAccount, chatModel: effectivePolishModel,
+            traditionalChinese: language != "en", spellings: spellings + (learned?.terms ?? []),
+            about: learned?.about, customStyle: customStyle.isEmpty ? nil : customStyle
+        )
+        guard SharedInbox.read().polish != setup else { return }
+        SharedInbox.update { $0.polish = setup }
     }
 
     private var spellings: [String] {
@@ -251,11 +282,17 @@ final class DictationStore {
             timing.transcribe = Date.now.timeIntervalSince(transcribeStart)
             timing.network = trace.summary
             let polishStart = Date.now
+            let learned = dreaming.isEnabled ? dreaming.profile : nil
+            // The keyboard's 改寫 panel is waiting: this recording says how to
+            // change text already typed, rather than being new text.
+            let refine = SharedInbox.read().refine.flatMap { Date.now.timeIntervalSince($0.date) < 600 ? $0 : nil }
             let polish = await Polish.run(
-                transcript, style: PolishStyle.withID(polishStyleID), spellings: spellings,
-                traditionalChinese: language != "en", provider: provider, apiKey: apiKey,
-                model: effectivePolishModel
+                refine?.text ?? transcript, style: refine == nil ? polishStyle : .spoken(transcript),
+                spellings: spellings + (learned?.terms ?? []),
+                traditionalChinese: language != "en", about: learned?.about,
+                provider: provider, apiKey: apiKey, model: effectivePolishModel
             )
+            if refine != nil, !polish.polished { throw RefineFailed() }
             timing.polish = Date.now.timeIntervalSince(polishStart)
             // The model may still slip into simplified characters.
             let text = language == "en" ? polish.text
@@ -263,7 +300,8 @@ final class DictationStore {
             SharedInbox.update {
                 $0.phase = .idle
                 $0.message = nil
-                $0.recent.insert(SharedInbox.Item(text: text, date: .now), at: 0)
+                $0.recent.insert(SharedInbox.Item(text: text, date: .now, replaces: refine?.text), at: 0)
+                $0.refine = nil
             }
             let copied = copyToClipboard(text)
             link.reply(.done, session: recording.session, text: text)
@@ -271,7 +309,7 @@ final class DictationStore {
                 id: id, date: ended, text: text, error: nil,
                 audioSeconds: recording.duration, latency: Date.now.timeIntervalSince(ended),
                 missingPackets: recording.missingPackets, copied: copied, wasInBackground: wasInBackground,
-                transcript: polish.polished && text != transcript ? transcript : nil, timing: timing
+                transcript: refine == nil && polish.polished && text != transcript ? transcript : nil, timing: timing
             ))
         } catch {
             let message = error.localizedDescription
@@ -330,4 +368,9 @@ private final class BackgroundTask {
         UIApplication.shared.endBackgroundTask(id)
         id = .invalid
     }
+}
+
+/// A spoken 改寫 request that couldn't be carried out.
+struct RefineFailed: LocalizedError {
+    var errorDescription: String? { String(localized: "沒辦法改寫：整理服務沒有回應") }
 }

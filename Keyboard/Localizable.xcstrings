@@ -1,9 +1,6 @@
 {
   "sourceLanguage": "zh-Hant",
   "strings": {
-    "^_^": {
-      "shouldTranslate": false
-    },
     "上一句": {
       "localizations": {
         "en": {
@@ -20,6 +17,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Next Keyboard"
+          }
+        }
+      }
+    },
+    "不需要就留空": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leave empty if not needed"
+          }
+        }
+      }
+    },
+    "先打開 Stick App 一次": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the Stick app once first"
           }
         }
       }
@@ -84,12 +101,42 @@
         }
       }
     },
+    "原文": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As spoken"
+          }
+        }
+      }
+    },
     "喜歡": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Love"
+          }
+        }
+      }
+    },
+    "已改寫": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rewritten"
+          }
+        }
+      }
+    },
+    "復原": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
           }
         }
       }
@@ -114,6 +161,16 @@
         }
       }
     },
+    "或按住 Stick，說你想怎麼改": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Or hold the Stick and say how to change it"
+          }
+        }
+      }
+    },
     "打招呼": {
       "localizations": {
         "en": {
@@ -134,12 +191,12 @@
         }
       }
     },
-    "按住打開完整的顏文字面板": {
+    "按住看更早的結果": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hold to open the full kaomoji panel"
+            "value": "Hold for earlier results"
           }
         }
       }
@@ -164,12 +221,142 @@
         }
       }
     },
+    "改寫": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rewrite"
+          }
+        }
+      }
+    },
+    "改寫上一句": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rewrite the last sentence"
+          }
+        }
+      }
+    },
+    "改寫中…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rewriting…"
+          }
+        }
+      }
+    },
+    "整理": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean up"
+          }
+        }
+      }
+    },
+    "更多": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More"
+          }
+        }
+      }
+    },
+    "更多符號": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More symbols"
+          }
+        }
+      }
+    },
+    "更早的結果": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier Results"
+          }
+        }
+      }
+    },
+    "最近的結果": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent results"
+          }
+        }
+      }
+    },
     "正在收音…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Listening…"
+          }
+        }
+      }
+    },
+    "正式": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formal"
+          }
+        }
+      }
+    },
+    "沒辦法改寫：整理服務沒有回應": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t rewrite: the polish service didn’t answer"
+          }
+        }
+      }
+    },
+    "游標往右": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor right"
+          }
+        }
+      }
+    },
+    "游標往左": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor left"
+          }
+        }
+      }
+    },
+    "游標要在那句後面才能改寫": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Put the cursor right after that sentence to rewrite it"
           }
         }
       }
@@ -194,6 +381,16 @@
         }
       }
     },
+    "用 Stick 說的話打進來後，可以在這裡改寫": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once the Stick has typed something, you can rewrite it here"
+          }
+        }
+      }
+    },
     "用 Stick 說的話會出現在這裡": {
       "localizations": {
         "en": {
@@ -210,6 +407,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "space"
+          }
+        }
+      }
+    },
+    "自訂": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom"
+          }
+        }
+      }
+    },
+    "自訂伺服器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom Server"
+          }
+        }
+      }
+    },
+    "貼上": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste"
+          }
+        }
+      }
+    },
+    "貼上 gsk_ 開頭的 key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste the key starting with gsk_"
+          }
+        }
+      }
+    },
+    "貼上 sk- 開頭的 key": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste the key starting with sk-"
+          }
+        }
+      }
+    },
+    "輕鬆": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Casual"
           }
         }
       }

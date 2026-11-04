@@ -10,9 +10,38 @@ final class KeyboardModel {
     enum Accessory {
         case kaomoji
         case cards
+        /// Older results, from holding 上一句.
+        case history
+        /// Marks and keys beyond the home's row.
+        case more
+        /// Rewrite the last result: a style, or a request spoken into the Stick.
+        case refine
     }
 
-    private(set) var accessory: Accessory?
+    /// The home is short; a panel needs the keyboard taller while it is open.
+    private(set) var accessory: Accessory? {
+        didSet {
+            controller?.setExpanded(accessory != nil)
+            // While 改寫 is open, the next Stick recording is a request about
+            // the last sentence; the app reads this to know.
+            let request = accessory == .refine ? refineTarget.map { SharedInbox.RefineRequest(text: $0, date: .now) } : nil
+            if SharedInbox.read().refine != request { SharedInbox.update { $0.refine = request } }
+            if accessory != .refine, case .done = refineState { refineState = .idle }
+        }
+    }
+
+    enum RefineState: Equatable {
+        case idle
+        case working
+        /// `original` stays around for 復原.
+        case done(original: String, rewritten: String)
+        case failed(String)
+    }
+
+    private(set) var refineState = RefineState.idle
+
+    /// The last text this keyboard typed: what 改寫 works on.
+    private(set) var refineTarget: String? = UserDefaults.standard.string(forKey: KeyboardModel.lastTextKey)
     private(set) var recentKaomoji: [String] = UserDefaults.standard.stringArray(forKey: KeyboardModel.recentKaomojiKey) ?? []
     /// 我的資訊 cards and the user's own kaomoji, edited in the app.
     private(set) var snippets = SharedSnippets.State()
@@ -30,6 +59,7 @@ final class KeyboardModel {
     @ObservationIgnored private let selectionHaptics = UISelectionFeedbackGenerator()
 
     private static let lastInsertedKey = "lastInsertedID"
+    private static let lastTextKey = "lastInsertedText"
     private static let recentKaomojiKey = "recentKaomoji"
     private static let maxRecentKaomoji = 16
     /// A result older than this is history, not something to offer on open.
@@ -85,6 +115,18 @@ final class KeyboardModel {
     }
 
     // MARK: Keys
+
+    /// A mark or other literal text.
+    func type(_ text: String) {
+        feelTap()
+        proxy?.insertText(text)
+    }
+
+    /// What is on the clipboard. Needs Full Access, which the keyboard asks for anyway.
+    func paste() {
+        feelTap()
+        if let text = UIPasteboard.general.string { proxy?.insertText(text) }
+    }
 
     func space() {
         feelTap()
@@ -162,7 +204,8 @@ final class KeyboardModel {
 
     // MARK: Cursor
 
-    /// Dragging along the space bar moves the cursor, like the system keyboard.
+    /// Dragging along the space bar moves the cursor, like the system keyboard;
+    /// the arrows on the 更多 panel move it one step.
     func moveCursor(by offset: Int) {
         proxy?.adjustTextPosition(byCharacterOffset: offset)
         selectionHaptics.selectionChanged()
@@ -191,7 +234,9 @@ final class KeyboardModel {
         }
         inbox = SharedInbox.read()
         snippets = SharedSnippets.read()
-        guard inbox.autoInsert, let latest = inbox.latest, latest.date >= shownAt, latest.id != lastInserted else {
+        // A spoken 改寫 always applies; it was asked for from this keyboard.
+        guard let latest = inbox.latest, inbox.autoInsert || latest.replaces != nil,
+              latest.date >= shownAt, latest.id != lastInserted else {
             KeyTiming.shared.note("skip auto: autoInsert \(inbox.autoInsert) latest \(inbox.latest != nil) "
                 + "afterShown \(inbox.latest.map { $0.date >= shownAt } ?? false) "
                 + "new \(inbox.latest.map { $0.id != lastInserted } ?? false)")
@@ -205,6 +250,17 @@ final class KeyboardModel {
             KeyTiming.shared.note("insert skipped: no text field")
             return
         }
+        if let old = item.replaces {
+            // A spoken 改寫: swap the sentence if it is still right before the cursor.
+            lastInserted = item.id
+            if replace(old, with: item.text) {
+                refineState = .done(original: old, rewritten: item.text)
+            } else {
+                refineState = .failed(String(localized: "游標要在那句後面才能改寫"))
+            }
+            inbox = SharedInbox.read()
+            return
+        }
         let before = proxy?.documentContextBeforeInput ?? ""
         proxy?.insertText(item.text)
         let after = proxy?.documentContextBeforeInput ?? ""
@@ -212,6 +268,69 @@ final class KeyboardModel {
             + "hasText \(proxy?.hasText ?? false) before \(before.count) after \(after.count) "
             + "endsWith \(after.hasSuffix(item.text)) field \(String(describing: proxy?.documentIdentifier))")
         lastInserted = item.id
+        rememberTyped(item.text)
         inbox = SharedInbox.read()
+    }
+
+    // MARK: 改寫
+
+    private func rememberTyped(_ text: String) {
+        refineTarget = text
+        UserDefaults.standard.set(text, forKey: Self.lastTextKey)
+    }
+
+    /// Deletes `old` from just before the cursor and types `new`. False when
+    /// the field doesn't end with `old` there (the cursor moved, or it was edited).
+    private func replace(_ old: String, with new: String) -> Bool {
+        guard let proxy, (proxy.documentContextBeforeInput ?? "").hasSuffix(old) else { return false }
+        for _ in 0..<old.count { proxy.deleteBackward() }
+        proxy.insertText(new)
+        rememberTyped(new)
+        return true
+    }
+
+    /// The styles 改寫 offers: the app's, minus 原文, plus the user's own.
+    var refineStyles: [PolishStyle] {
+        let presets = PolishStyle.all.filter(\.rewritesText)
+        guard let custom = inbox.polish?.customStyle else { return presets }
+        return presets + [.custom(custom)]
+    }
+
+    func refine(_ style: PolishStyle) {
+        feelTap()
+        guard let target = refineTarget else { return }
+        guard let setup = inbox.polish, let baseURL = URL(string: setup.baseURL) else {
+            refineState = .failed(String(localized: "先打開 Stick App 一次"))
+            return
+        }
+        guard (proxy?.documentContextBeforeInput ?? "").hasSuffix(target) else {
+            refineState = .failed(String(localized: "游標要在那句後面才能改寫"))
+            return
+        }
+        refineState = .working
+        let provider = SpeechProvider(
+            kind: setup.needsKey ? .groq : .custom, baseURL: baseURL, name: setup.providerName, keyPrompt: "",
+            defaultSpeech: "", defaultChat: setup.chatModel, preferredSpeech: [], preferredChat: []
+        )
+        let key = Keychain.read(setup.keychainAccount) ?? ""
+        Task {
+            let result = await Polish.run(target, style: style, spellings: setup.spellings,
+                                          traditionalChinese: setup.traditionalChinese, about: setup.about,
+                                          provider: provider, apiKey: key, model: setup.chatModel)
+            guard result.polished else {
+                refineState = .failed(String(localized: "沒辦法改寫：整理服務沒有回應"))
+                return
+            }
+            refineState = replace(target, with: result.text)
+                ? .done(original: target, rewritten: result.text)
+                : .failed(String(localized: "游標要在那句後面才能改寫"))
+        }
+    }
+
+    /// Puts the sentence back the way it was before 改寫.
+    func undoRefine() {
+        feelTap()
+        guard case let .done(original, rewritten) = refineState else { return }
+        if replace(rewritten, with: original) { refineState = .idle }
     }
 }

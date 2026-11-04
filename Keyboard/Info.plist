@@ -40,5 +40,7 @@
 	</dict>
 	<key>StickAppGroup</key>
 	<string>group.$(BUNDLE_ID_PREFIX)</string>
+	<key>StickKeychainGroup</key>
+	<string>$(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).shared</string>
 </dict>
 </plist>

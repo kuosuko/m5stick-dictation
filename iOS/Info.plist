@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).dreaming.*</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -24,6 +28,8 @@
 	<string>用藍牙接收 Stick 錄到的聲音。</string>
 	<key>StickAppGroup</key>
 	<string>group.$(BUNDLE_ID_PREFIX)</string>
+	<key>StickKeychainGroup</key>
+	<string>$(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).shared</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

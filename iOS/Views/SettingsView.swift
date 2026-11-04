@@ -41,6 +41,12 @@ struct SettingsView: View {
                     }
                     Picker(String(localized: "整理成"), selection: $store.polishStyleID) {
                         ForEach(PolishStyle.all) { Text($0.name).tag($0.id) }
+                        Text(String(localized: "自訂")).tag(PolishStyle.customID)
+                    }
+                    if store.polishStyleID == PolishStyle.customID {
+                        TextField(String(localized: "想怎麼整理"), text: $store.customStyle,
+                                  prompt: Text(String(localized: "例如：寫成條列，保留我的口語")), axis: .vertical)
+                            .lineLimit(2...5)
                     }
                     TextField(String(localized: "常用寫法"), text: $store.vocabulary, prompt: Text(String(localized: "人名、專有名詞，用逗號隔開")), axis: .vertical)
                         .lineLimit(1...4)
@@ -76,6 +82,10 @@ struct SettingsView: View {
                     Text(providerFooter)
                 }
 
+                if #available(iOS 27.0, *) {
+                    DreamingSection(dreaming: store.dreaming, history: store.history)
+                }
+
                 Section {
                     NavigationLink("Lab") { LabView(link: link, store: store) }
                 } footer: {
@@ -89,6 +99,7 @@ struct SettingsView: View {
             .navigationTitle(String(localized: "設定"))
             .navigationBarTitleDisplayMode(.inline)
             .task(id: store.providerKind) { await store.refreshModels() }
+            .onDisappear { store.shareSetup() }
             .sheet(isPresented: $showingFind) { FindStickView(link: link, demo: demo) }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -242,5 +253,140 @@ struct SettingsView: View {
             lines.append(store.isLoadingModels ? String(localized: "正在讀模型清單。") : String(localized: "還沒讀到模型清單，先用預設的。"))
         }
         return lines.joined(separator: "\n")
+    }
+}
+
+/// What Stick has learned from the user's dictations, and the switch for it.
+private struct DreamingSection: View {
+    @Bindable var dreaming: Dreaming
+    let history: [Dictation]
+    @State private var editing: TermEdit?
+
+    struct TermEdit: Identifiable {
+        let id = UUID()
+        let original: String?
+        var text: String
+    }
+
+    var body: some View {
+        Section {
+            Toggle(String(localized: "從聽寫中認識你"), isOn: $dreaming.isEnabled)
+            if dreaming.isEnabled {
+                let profile = dreaming.profile
+                if !profile.about.isEmpty {
+                    Text(profile.about)
+                        .font(.callout)
+                }
+                if !profile.topics.isEmpty {
+                    LabeledContent(String(localized: "常說的主題"), value: profile.topics.joined(separator: "、"))
+                }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(String(localized: "記住的詞"))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    FlowLayout(spacing: 6) {
+                        ForEach(profile.terms, id: \.self) { term in
+                            Button(term) { editing = TermEdit(original: term, text: term) }
+                                .buttonStyle(.bordered)
+                                .buttonBorderShape(.capsule)
+                                .controlSize(.small)
+                        }
+                        Button(String(localized: "新增"), systemImage: "plus") { editing = TermEdit(original: nil, text: "") }
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                            .controlSize(.small)
+                            .tint(.secondary)
+                    }
+                }
+                .padding(.vertical, 4)
+                Button {
+                    Task { await dreaming.dream(history: history) }
+                } label: {
+                    HStack {
+                        Text(dreaming.isDreaming ? String(localized: "整理中…") : String(localized: "現在整理"))
+                        Spacer()
+                        if dreaming.isDreaming { ProgressView() }
+                    }
+                }
+                .disabled(dreaming.isDreaming || !history.contains { $0.text != nil })
+                if !profile.isEmpty {
+                    Button(String(localized: "忘記這些"), role: .destructive) { dreaming.forget() }
+                }
+            }
+        } header: {
+            Text(String(localized: "Stick 對你的了解"))
+        } footer: {
+            Text(footer)
+        }
+        .alert(editing?.original == nil ? String(localized: "新增詞") : String(localized: "修改詞"),
+               isPresented: Binding(get: { editing != nil }, set: { if !$0 { editing = nil } })) {
+            TextField(String(localized: "詞"), text: Binding(get: { editing?.text ?? "" }, set: { editing?.text = $0 }))
+            Button(String(localized: "儲存")) {
+                if let edit = editing {
+                    if let original = edit.original { dreaming.setTerm(original, to: edit.text) } else { dreaming.addTerm(edit.text) }
+                }
+                editing = nil
+            }
+            if let original = editing?.original {
+                Button(String(localized: "刪除"), role: .destructive) {
+                    dreaming.setTerm(original, to: "")
+                    editing = nil
+                }
+            }
+            Button(String(localized: "取消"), role: .cancel) { editing = nil }
+        }
+    }
+
+    private var footer: String {
+        if let error = dreaming.lastError { return error }
+        var lines = [String(localized: "每累積 \(Dreaming.threshold) 段聽寫，打開 App 時用 Apple 的 Private Cloud Compute 整理一次，Apple 也無法讀取內容。整理結果只存在這支手機，用於整理文字，並可能替你加入我的資訊。")]
+        if dreaming.isEnabled {
+            lines.append(String(localized: "還有 \(dreaming.unread(in: history).count) 段沒讀過。"))
+        }
+        return lines.joined(separator: "\n")
+    }
+}
+
+/// Lays out chips left to right, wrapping to the next line.
+struct FlowLayout: Layout {
+    var spacing: CGFloat = 6
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let rows = rows(for: subviews, width: proposal.width ?? .infinity)
+        let height = rows.map(\.height).reduce(0, +) + spacing * CGFloat(max(rows.count - 1, 0))
+        let width = rows.map(\.width).max() ?? 0
+        return CGSize(width: proposal.width ?? width, height: height)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        var y = bounds.minY
+        for row in rows(for: subviews, width: bounds.width) {
+            var x = bounds.minX
+            for index in row.indices {
+                let size = subviews[index].sizeThatFits(.unspecified)
+                subviews[index].place(at: CGPoint(x: x, y: y), proposal: ProposedViewSize(size))
+                x += size.width + spacing
+            }
+            y += row.height + spacing
+        }
+    }
+
+    private struct Row { var indices: [Int] = []; var width: CGFloat = 0; var height: CGFloat = 0 }
+
+    private func rows(for subviews: Subviews, width: CGFloat) -> [Row] {
+        var rows = [Row()]
+        for index in subviews.indices {
+            let size = subviews[index].sizeThatFits(.unspecified)
+            let needed = rows[rows.count - 1].indices.isEmpty ? size.width : rows[rows.count - 1].width + spacing + size.width
+            if needed > width, !rows[rows.count - 1].indices.isEmpty {
+                rows.append(Row())
+            }
+            var row = rows[rows.count - 1]
+            row.width = row.indices.isEmpty ? size.width : row.width + spacing + size.width
+            row.height = max(row.height, size.height)
+            row.indices.append(index)
+            rows[rows.count - 1] = row
+        }
+        return rows
     }
 }

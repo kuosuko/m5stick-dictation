@@ -9,6 +9,8 @@ enum SharedSnippets {
         var id = UUID()
         var title: String
         var text: String
+        /// Added by Stick from the user's dictations rather than typed in.
+        var learned: Bool? = nil
     }
 
     struct State: Codable, Equatable {

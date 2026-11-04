@@ -14,7 +14,13 @@ struct CardsEditor: View {
             ForEach(cards) { card in
                 Button { editing = card } label: {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(card.title).font(.headline)
+                        HStack(spacing: 6) {
+                            Text(card.title).font(.headline)
+                            if card.learned == true {
+                                ParrotMark(height: 10)
+                                    .accessibilityLabel(String(localized: "從聽寫學到的"))
+                            }
+                        }
                         Text(card.text)
                             .font(.subheadline)
                             .foregroundStyle(.secondary)

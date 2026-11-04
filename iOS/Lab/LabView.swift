@@ -138,6 +138,9 @@ struct LabView: View {
 
     private var controls: some View {
         Form {
+            Section {
+                NavigationLink("模型比較") { ModelBenchView(store: store) }
+            }
             Section("材質") {
                 color("機身", $lab.model.bodyColor)
                 color("前蓋", $lab.model.coverColor)

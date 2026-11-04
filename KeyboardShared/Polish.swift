@@ -15,11 +15,28 @@ struct PolishStyle: Identifiable, Hashable, Sendable {
 
     static let asSpokenID = "as-spoken"
     static let cleanID = "clean"
+    static let customID = "custom"
+
+    /// The user's own words for how to rewrite.
+    static func custom(_ request: String) -> PolishStyle {
+        PolishStyle(id: customID, name: String(localized: "自訂"), instructions: """
+            Rewrite the dictated text the way the speaker asked: \(request)
+            Fix recognition mistakes and punctuation too. Keep the meaning.
+            """)
+    }
+
+    /// A request spoken into the Stick about text already typed ("make it shorter").
+    static func spoken(_ request: String) -> PolishStyle {
+        PolishStyle(id: "spoken", name: "", instructions: """
+            The speaker wants this change to the text: \(request)
+            Make exactly that change and keep everything else as it is.
+            """)
+    }
 
     static let all: [PolishStyle] = [
-        PolishStyle(id: asSpokenID, name: "原文", instructions: ""),
+        PolishStyle(id: asSpokenID, name: String(localized: "原文"), instructions: ""),
         // Spelled out step by step: the on-device model ignored the short version.
-        PolishStyle(id: cleanID, name: "整理", instructions: """
+        PolishStyle(id: cleanID, name: String(localized: "整理"), instructions: """
             Clean up the dictated text:
             - Add punctuation where it belongs. Chinese: ，between clauses, 。at the end, ？only after a \
             real question. Use one mark at a time; never stack marks like ？！.
@@ -30,11 +47,11 @@ struct PolishStyle: Identifiable, Hashable, Sendable {
             - Keep every other word exactly, including 你, 我 and other pronouns, and keep the \
             meaning, language and tone. Don't summarize, don't reorder, don't add anything.
             """),
-        PolishStyle(id: "formal", name: "正式", instructions: """
+        PolishStyle(id: "formal", name: String(localized: "正式"), instructions: """
             Rewrite in a clear, professional tone suitable for work email. Fix recognition \
             mistakes and punctuation. Keep the meaning and the language the speaker used.
             """),
-        PolishStyle(id: "casual", name: "輕鬆", instructions: """
+        PolishStyle(id: "casual", name: String(localized: "輕鬆"), instructions: """
             Rewrite as a relaxed chat message. Fix recognition mistakes, keep it short and \
             natural. Keep the meaning and the language the speaker used.
             """),
@@ -48,7 +65,9 @@ struct PolishStyle: Identifiable, Hashable, Sendable {
     }
 
     /// A translation can be longer than what was said.
-    var allowsExpansion: Bool { id == "english" }
+    var allowsExpansion: Bool { ["english", Self.customID, "spoken"].contains(id) }
+    /// Styles that may change the language: English, and the user's own requests.
+    var mayTranslate: Bool { allowsExpansion }
 }
 
 enum Polish {
@@ -58,24 +77,32 @@ enum Polish {
     /// The polished text, or `transcript` itself when the style keeps it as
     /// spoken, no model is available, or the model's answer can't be trusted.
     static func run(_ transcript: String, style: PolishStyle, spellings: [String],
-                    traditionalChinese: Bool, provider: SpeechProvider, apiKey: String,
+                    traditionalChinese: Bool, about: String? = nil, provider: SpeechProvider, apiKey: String,
                     model: String) async -> (text: String, polished: Bool) {
-        guard style.rewritesText, transcript.count >= minimumLength,
-              let rewriter = rewriter(provider: provider, apiKey: apiKey, model: model) else { return (transcript, false) }
+        guard style.rewritesText, transcript.count >= minimumLength else { return (transcript, false) }
         let messages = messages(transcript: transcript, style: style, spellings: spellings,
-                                traditionalChinese: traditionalChinese)
-        guard let raw = try? await rewriter.rewrite(system: messages.system, user: messages.user),
-              let text = PolishGuard.rewrite(raw, source: transcript, allowsExpansion: style.allowsExpansion)
-        else { return (transcript, false) }
-        return (text, true)
+                                traditionalChinese: traditionalChinese, about: about)
+        // The provider first; Apple Intelligence on the phone when there is no
+        // key, or the provider fails or answers with something unusable.
+        for rewriter in rewriters(provider: provider, apiKey: apiKey, model: model) {
+            if let raw = try? await rewriter.rewrite(system: messages.system, user: messages.user),
+               let text = PolishGuard.rewrite(raw, source: transcript, allowsExpansion: style.allowsExpansion,
+                                              mayTranslate: style.mayTranslate) {
+                return (text, true)
+            }
+        }
+        return (transcript, false)
     }
 
-    /// The provider when it is set up and has a chat model, else Apple
-    /// Intelligence on the device.
-    private static func rewriter(provider: SpeechProvider, apiKey: String, model: String) -> (any TextRewriter)? {
-        let ready = !model.isEmpty && (!apiKey.isEmpty || !provider.needsKey)
-        if ready { return ChatRewriter(provider: provider, apiKey: apiKey, model: model) }
-        return OnDeviceRewriter.ifAvailable()
+    /// In the order to try: the provider when it is set up and has a chat
+    /// model, then Apple Intelligence on the device.
+    private static func rewriters(provider: SpeechProvider, apiKey: String, model: String) -> [any TextRewriter] {
+        var list: [any TextRewriter] = []
+        if !model.isEmpty, !apiKey.isEmpty || !provider.needsKey {
+            list.append(ChatRewriter(provider: provider, apiKey: apiKey, model: model))
+        }
+        if let onDevice = OnDeviceRewriter.ifAvailable() { list.append(onDevice) }
+        return list
     }
 
     // MARK: Prompt
@@ -84,7 +111,7 @@ enum Polish {
     static let endMarker = "END DICTATED TEXT"
 
     static func messages(transcript: String, style: PolishStyle, spellings: [String],
-                         traditionalChinese: Bool) -> (system: String, user: String) {
+                         traditionalChinese: Bool, about: String? = nil) -> (system: String, user: String) {
         var system = """
         You turn dictated speech into finished text for Stick, a voice keyboard.
 
@@ -98,6 +125,10 @@ enum Polish {
         let words = spellings.map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
         if !words.isEmpty { system += "\n- Keep these spellings exactly as written: " + words.joined(separator: ", ") }
         if traditionalChinese { system += "\n- Write any Chinese in Traditional characters as used in Taiwan." }
+        if let about, !about.isEmpty {
+            // Learned by Dreaming; context for fixing recognition mistakes, never content to add.
+            system += "\n- About the speaker, to recognize what they mean. Never add any of it to the text: " + about
+        }
         return (system, "\(beginMarker)\n\(transcript)\n\(endMarker)")
     }
 }
@@ -108,7 +139,7 @@ enum PolishGuard {
     /// `nil` when the answer can't be trusted: empty, unfinished reasoning, or
     /// far longer than the source, which usually means the model answered the
     /// text instead of rewriting it.
-    static func rewrite(_ raw: String, source: String, allowsExpansion: Bool = false) -> String? {
+    static func rewrite(_ raw: String, source: String, allowsExpansion: Bool = false, mayTranslate: Bool = false) -> String? {
         guard var text = stripReasoning(raw) else { return nil }
         text = stripFences(text)
         text = stripMarkers(text)
@@ -117,7 +148,15 @@ enum PolishGuard {
         text = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return nil }
         let limit = allowsExpansion ? source.count * 8 + 400 : source.count * 4 + 200
-        return text.count <= limit ? text : nil
+        guard text.count <= limit else { return nil }
+        // A model that answers in another language translated instead of
+        // cleaning up (seen on device and on PCC).
+        if !mayTranslate, hasChinese(source) != hasChinese(text) { return nil }
+        return text
+    }
+
+    static func hasChinese(_ text: String) -> Bool {
+        text.unicodeScalars.contains { $0.properties.isIdeographic }
     }
 
     static func stripReasoning(_ text: String) -> String? {

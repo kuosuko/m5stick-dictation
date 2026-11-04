@@ -2,7 +2,10 @@ import SwiftUI
 import UIKit
 
 final class KeyboardViewController: UIInputViewController {
-    private static let height: CGFloat = 330
+    /// The home is two rows under the status bar; panels need more room.
+    private static let compactHeight: CGFloat = 176
+    private static let expandedHeight: CGFloat = 290
+    private var heightConstraint: NSLayoutConstraint?
 
     private let model = KeyboardModel()
 
@@ -26,9 +29,14 @@ final class KeyboardViewController: UIInputViewController {
         host.didMove(toParent: self)
 
         // Below required so the system can still shrink us during rotation.
-        let height = view.heightAnchor.constraint(equalToConstant: Self.height)
+        let height = view.heightAnchor.constraint(equalToConstant: Self.compactHeight)
         height.priority = UILayoutPriority(999)
         height.isActive = true
+        heightConstraint = height
+    }
+
+    func setExpanded(_ expanded: Bool) {
+        heightConstraint?.constant = expanded ? Self.expandedHeight : Self.compactHeight
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -60,7 +60,7 @@ private struct AccessoryPanel: View {
                 if kind == .kaomoji {
                     categoryBar
                 } else {
-                    Text(String(localized: "我的資訊"))
+                    Text(title)
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity)
@@ -73,8 +73,12 @@ private struct AccessoryPanel: View {
                 switch kind {
                 case .kaomoji: kaomojiGrid
                 case .cards: cardGrid
+                case .history: historyList
+                case .more: moreGrid
+                case .refine: RefinePanel(model: model)
                 }
             }
+            .scrollIndicators(.hidden)
             .id(category)
         }
         // A swipe to the right goes back too, like a navigation stack.
@@ -86,6 +90,58 @@ private struct AccessoryPanel: View {
         )
         .padding(.horizontal, 6)
         .padding(.vertical, 4)
+    }
+
+    private var title: String {
+        switch kind {
+        case .cards: String(localized: "我的資訊")
+        case .history: String(localized: "最近的結果")
+        case .more: String(localized: "更多")
+        case .refine: String(localized: "改寫上一句")
+        case .kaomoji: ""
+        }
+    }
+
+    @ViewBuilder
+    private var historyList: some View {
+        let items = Array(model.inbox.recent.prefix(20))
+        if items.isEmpty {
+            Text(String(localized: "用 Stick 說的話會出現在這裡"))
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .padding(24)
+                .frame(maxWidth: .infinity)
+        } else {
+            VStack(spacing: 0) {
+                ForEach(items) { item in
+                    RecentRow(item: item) { model.insertAgain(item) }
+                    if item.id != items.last?.id { Divider().padding(.leading, 12) }
+                }
+            }
+        }
+    }
+
+    private static let moreMarks = ["？", "！", "、", "：", "；", "……", "「", "」", "（", "）", "～", "＠", "#", "%"]
+
+    private var moreGrid: some View {
+        VStack(spacing: 10) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 6), spacing: 10) {
+                ForEach(Self.moreMarks, id: \.self) { mark in
+                    RoundKey(text: mark) { model.type(mark) }
+                        .frame(height: 46)
+                }
+            }
+            HStack(spacing: 8) {
+                RoundKey(systemImage: "chevron.left", label: String(localized: "游標往左")) { model.moveCursor(by: -1) }
+                RoundKey(systemImage: "chevron.right", label: String(localized: "游標往右")) { model.moveCursor(by: 1) }
+                RoundKey(systemImage: "space", label: String(localized: "空白"), action: model.space)
+                RoundKey(systemImage: "doc.on.clipboard", label: String(localized: "貼上"), action: model.paste)
+                RoundKey(systemImage: "return", label: String(localized: "換行"), action: model.returnKey)
+                RoundKey(systemImage: "delete.left", label: String(localized: "刪除"), action: model.delete)
+            }
+            .frame(height: 46)
+        }
+        .padding(.top, 4)
     }
 
     /// 全部 first so everything is one scroll away; 我的 only once there are some.

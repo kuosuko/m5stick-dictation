@@ -27,7 +27,8 @@
 |---|---|
 | **Stick** | Hold to talk, or tap to start and tap to send. Deep-sleeps after 15 seconds idle; a press wakes it and it records while the phone reconnects. Screen in Chinese or English, following the phone |
 | **iPhone app** | Pairing, transcription, polish, history, Stick settings. Used daily on an iPhone Duo (iOS 27) |
-| **Stick keyboard** | Types results into any text field; inserts the last result again, saved snippets and kaomoji |
+| **Stick keyboard** | Types results into any text field. Rewrites the last sentence in a style, or the way you say into the Stick ("shorter", "make it a question"), with undo. The last result again, saved snippets, kaomoji |
+| **Dreaming** | Every 10 dictations, Apple's Private Cloud Compute reads them and keeps a short profile of you and a spelling list for polish, editable in settings. iOS 27, and your App ID needs the Private Cloud Compute capability |
 | **Transcription** | Groq in daily use. OpenAI and OpenAI-compatible servers are supported but not yet tried |
 
 ## Quick start
@@ -56,7 +57,7 @@ flowchart LR
 - **The Stick records and streams.** 16 kHz audio, compressed to IMA ADPCM, goes over Bluetooth LE as it is spoken. See [PROTOCOL.md](PROTOCOL.md).
 - **It sleeps between dictations.** A press wakes it from deep sleep and the microphone starts before Bluetooth does. Up to 120 seconds of audio wait in PSRAM until the phone reconnects, so the first word is kept.
 - **The iPhone transcribes.** Silence is trimmed, the speech is encoded as AAC and uploaded. Whisper gets no prompt: a prompt makes it echo text on silence.
-- **Polish is optional.** A chat model (or Apple Intelligence on the phone) fixes punctuation, filler words and self-corrections, or changes the tone.
+- **Polish is optional.** Your service's chat model fixes punctuation, filler words and self-corrections, or changes the tone. When there is no key, or the service fails or hits its rate limit (Groq's free tier runs out quickly), Apple Intelligence on the phone takes over on its own.
 - **The keyboard types it.** iOS doesn't let a background app paste, so results go to an app group the Stick keyboard reads and inserts from.
 
 <br clear="right">
@@ -69,7 +70,7 @@ flowchart LR
 
 **Which services can transcribe?** Groq, OpenAI, or any server with an OpenAI-compatible `/v1/audio/transcriptions`, such as [whisper.cpp](https://github.com/ggml-org/whisper.cpp)'s server or LocalAI. Keys stay in the phone's keychain.
 
-**Why does the keyboard need Full Access?** To read results from the app group it shares with the app. It sends nothing anywhere.
+**Why does the keyboard need Full Access?** To read results from the app group it shares with the app. The only thing it sends anywhere is a sentence you ask it to rewrite, to your own polish service.
 
 **How long does the battery last?** Not measured yet on the current firmware. The Stick deep-sleeps after 15 seconds idle, adjustable in the app.
 
@@ -89,6 +90,8 @@ open StickDictation.xcodeproj
 ```
 
 Run the `DuoDictate` scheme on your iPhone. The app, its keyboard and their app group are all named from the bundle prefix in `Local.xcconfig`.
+
+Dreaming uses Apple's Private Cloud Compute, which your App ID needs approval for. Without it the app builds and runs without Dreaming; with it, set `STICK_APP_ENTITLEMENTS = iOS/Stick-PCC.entitlements` in `Local.xcconfig`.
 
 ## Install without Xcode
 

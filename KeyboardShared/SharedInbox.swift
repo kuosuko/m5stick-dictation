@@ -19,6 +19,31 @@ enum SharedInbox {
         var id = UUID()
         let text: String
         let date: Date
+        /// A rewrite of text already typed: the keyboard deletes this first
+        /// when it is still right before the cursor.
+        var replaces: String? = nil
+    }
+
+    /// What the keyboard needs to rewrite text itself: the app's polish
+    /// service and model. The key stays in the shared keychain.
+    struct PolishSetup: Codable, Equatable {
+        var providerName: String
+        var baseURL: String
+        var needsKey: Bool
+        var keychainAccount: String
+        var chatModel: String
+        var traditionalChinese: Bool
+        var spellings: [String]
+        var about: String?
+        /// The user's own style from the app's settings, when they wrote one.
+        var customStyle: String?
+    }
+
+    /// The keyboard is waiting to rewrite `text`; the next Stick recording is
+    /// the request for how.
+    struct RefineRequest: Codable, Equatable {
+        let text: String
+        let date: Date
     }
 
     enum Phase: String, Codable {
@@ -38,6 +63,8 @@ enum SharedInbox {
         /// Set the first time the keyboard runs with Full Access, so the app can
         /// tick that setup step off.
         var keyboardSeenAt: Date?
+        var polish: PolishSetup?
+        var refine: RefineRequest?
 
         var latest: Item? { recent.first }
     }

@@ -2,3 +2,5 @@
 // group are all named from this prefix.
 BUNDLE_ID_PREFIX = com.yourname.stickdictation
 DEVELOPMENT_TEAM = ABCDE12345
+// Uncomment once your App ID has the Private Cloud Compute capability:
+// STICK_APP_ENTITLEMENTS = iOS/Stick-PCC.entitlements

@@ -6,5 +6,9 @@
 	<array>
 		<string>group.$(BUNDLE_ID_PREFIX)</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).shared</string>
+	</array>
 </dict>
 </plist>

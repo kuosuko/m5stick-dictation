@@ -25,22 +25,23 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).duo
+        # Stick.entitlements, or Stick-PCC.entitlements with Private Cloud
+        # Compute for Dreaming; chosen in Config/*.xcconfig.
+        CODE_SIGN_ENTITLEMENTS: $(STICK_APP_ENTITLEMENTS)
         PRODUCT_NAME: Stick
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: NO
-    entitlements:
-      path: iOS/Stick.entitlements
-      properties:
-        com.apple.security.application-groups: [group.$(BUNDLE_ID_PREFIX)]
     info:
       path: iOS/Info.plist
       properties:
         CFBundleDisplayName: Stick
         StickAppGroup: group.$(BUNDLE_ID_PREFIX)
+        StickKeychainGroup: $(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).shared
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: true
         UIBackgroundModes: [bluetooth-central]
+        BGTaskSchedulerPermittedIdentifiers: ["$(PRODUCT_BUNDLE_IDENTIFIER).dreaming.*"]
         NSBluetoothAlwaysUsageDescription: 用藍牙接收 Stick 錄到的聲音。
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
@@ -75,11 +76,13 @@ targets:
       path: Keyboard/StickKeyboard.entitlements
       properties:
         com.apple.security.application-groups: [group.$(BUNDLE_ID_PREFIX)]
+        keychain-access-groups: ["$(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).shared"]
     info:
       path: Keyboard/Info.plist
       properties:
         CFBundleDisplayName: Stick
         StickAppGroup: group.$(BUNDLE_ID_PREFIX)
+        StickKeychainGroup: $(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).shared
         NSExtension:
           NSExtensionPointIdentifier: com.apple.keyboard-service
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController

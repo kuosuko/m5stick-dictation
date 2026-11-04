@@ -243,6 +243,26 @@
         }
       }
     },
+    "Stick 對你的了解": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What Stick Knows About You"
+          }
+        }
+      }
+    },
+    "Stick 正在認識你": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stick is getting to know you"
+          }
+        }
+      }
+    },
     "Whisper 聽到的": {
       "localizations": {
         "en": {
@@ -356,6 +376,26 @@
         }
       }
     },
+    "例如：寫成條列，保留我的口語": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e.g. bullet points, keep my casual tone"
+          }
+        }
+      }
+    },
+    "修改詞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Word"
+          }
+        }
+      }
+    },
     "停止": {
       "localizations": {
         "en": {
@@ -392,6 +432,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Content"
+          }
+        }
+      }
+    },
+    "刪除": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
           }
         }
       }
@@ -446,6 +496,16 @@
         }
       }
     },
+    "加入 %lld 筆我的資訊": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added %lld to My Info"
+          }
+        }
+      }
+    },
     "加入 Stick 鍵盤": {
       "localizations": {
         "en": {
@@ -486,22 +546,22 @@
         }
       }
     },
-    "半折時分開鍵盤": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Split keyboard when half folded"
-          }
-        }
-      }
-    },
     "即時調整 Stick 模型、打光、動態和頁面的樣子。": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Adjust the Stick model, lighting, motion and page look live."
+          }
+        }
+      }
+    },
+    "原文": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As spoken"
           }
         }
       }
@@ -592,6 +652,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "Font"
+          }
+        }
+      }
+    },
+    "學到 %lld 個新詞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learned %lld new words"
+          }
+        }
+      }
+    },
+    "學到 %lld 個新詞，加入 %lld 筆我的資訊": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learned %lld new words, added %lld to My Info"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "new",
+            "value": "學到 %1$lld 個新詞，加入 %2$lld 筆我的資訊"
           }
         }
       }
@@ -706,6 +792,16 @@
         }
       }
     },
+    "常說的主題": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topics"
+          }
+        }
+      }
+    },
     "幾步之內，翻翻附近。": {
       "localizations": {
         "en": {
@@ -726,12 +822,52 @@
         }
       }
     },
+    "從聽寫中認識你": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn from my dictations"
+          }
+        }
+      }
+    },
+    "從聽寫學到的": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learned from your dictations"
+          }
+        }
+      }
+    },
     "忘記": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Forget"
+          }
+        }
+      }
+    },
+    "忘記這些": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forget All This"
+          }
+        }
+      }
+    },
+    "想怎麼整理": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How to polish"
           }
         }
       }
@@ -906,6 +1042,36 @@
         }
       }
     },
+    "整理": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clean up"
+          }
+        }
+      }
+    },
+    "整理中…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading…"
+          }
+        }
+      }
+    },
+    "整理完成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done reading"
+          }
+        }
+      }
+    },
     "整理成": {
       "localizations": {
         "en": {
@@ -932,6 +1098,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add"
+          }
+        }
+      }
+    },
+    "新增詞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Word"
           }
         }
       }
@@ -1052,6 +1228,16 @@
         }
       }
     },
+    "正在從最近的聽寫認識你": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getting to know you from recent dictations"
+          }
+        }
+      }
+    },
     "正在聽": {
       "localizations": {
         "en": {
@@ -1082,12 +1268,32 @@
         }
       }
     },
+    "正式": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formal"
+          }
+        }
+      }
+    },
     "步驟": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Steps"
+          }
+        }
+      }
+    },
+    "每累積 %lld 段聽寫，打開 App 時用 Apple 的 Private Cloud Compute 整理一次，Apple 也無法讀取內容。整理結果只存在這支手機，用於整理文字，並可能替你加入我的資訊。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every %lld dictations, opening the app has Apple’s Private Cloud Compute read them; not even Apple can see what it reads. What it learns stays on this phone, helps polish your text, and may add entries to My Info."
           }
         }
       }
@@ -1122,6 +1328,16 @@
         }
       }
     },
+    "沒辦法改寫：整理服務沒有回應": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t rewrite: the polish service didn’t answer"
+          }
+        }
+      }
+    },
     "沒連上": {
       "localizations": {
         "en": {
@@ -1148,6 +1364,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clear History"
+          }
+        }
+      }
+    },
+    "現在整理": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read Now"
           }
         }
       }
@@ -1228,6 +1454,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatic"
+          }
+        }
+      }
+    },
+    "自訂": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom"
           }
         }
       }
@@ -1332,6 +1568,16 @@
         }
       }
     },
+    "記住的詞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Words"
+          }
+        }
+      }
+    },
     "設定": {
       "localizations": {
         "en": {
@@ -1372,6 +1618,16 @@
         }
       }
     },
+    "詞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Word"
+          }
+        }
+      }
+    },
     "語言": {
       "localizations": {
         "en": {
@@ -1388,6 +1644,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Speech is transcribed, then polished with these settings. If polishing fails, the transcript goes in as spoken."
+          }
+        }
+      }
+    },
+    "讀最近 %lld 段聽寫": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the last %lld dictations"
           }
         }
       }
@@ -1418,6 +1684,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Paste or type a kaomoji"
+          }
+        }
+      }
+    },
+    "輕鬆": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Casual"
           }
         }
       }
@@ -1472,6 +1748,16 @@
         }
       }
     },
+    "這支手機目前用不到 Private Cloud Compute。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Private Cloud Compute isn’t available on this phone right now."
+          }
+        }
+      }
+    },
     "這週": {
       "localizations": {
         "en": {
@@ -1518,6 +1804,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "A few steps left"
+          }
+        }
+      }
+    },
+    "還有 %lld 段沒讀過。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dictations not read yet."
           }
         }
       }

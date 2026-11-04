@@ -2,5 +2,8 @@
 // Config/Local.xcconfig (copy Local.example.xcconfig); it is not committed.
 BUNDLE_ID_PREFIX = com.example.stickdictation
 DEVELOPMENT_TEAM =
+// Private Cloud Compute (Dreaming) needs Apple's approval for your App ID;
+// switch to Stick-PCC.entitlements in Local.xcconfig once you have it.
+STICK_APP_ENTITLEMENTS = iOS/Stick.entitlements
 
 #include? "Local.xcconfig"
